@@ -8,3 +8,5 @@ _spawnable_scenes = PackedStringArray("uid://b02nchvg72klm")
 spawn_path = NodePath("..")
 script = ExtResource("1_ob1y0")
 network_player = ExtResource("2_n2lwm")
+
+[connection signal="spawned" from="." to="." method="_on_spawned"]

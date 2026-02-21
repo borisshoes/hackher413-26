@@ -3,7 +3,15 @@ extends Node
 const ADDRESS = "localhost"
 const PORT = 3621
 
+@export var local_player: Node = null
+
 var peer: ENetMultiplayerPeer
+
+
+	
+	
+	
+
 
 func start_server() -> void:
 	peer = ENetMultiplayerPeer.new()
