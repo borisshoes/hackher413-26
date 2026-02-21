@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dlsck8mmnrngn"]
+
+[ext_resource type="Script" uid="uid://b1me4deq1envq" path="res://scripts/player_graphics.gd" id="1_h81ub"]
+[ext_resource type="SpriteFrames" uid="uid://cq5ri2cw6xdye" path="res://assets/sprite_frames/ears.tres" id="2_wrkmd"]
+[ext_resource type="SpriteFrames" uid="uid://gerlcg578frm" path="res://assets/sprite_frames/player_face.tres" id="3_o5adl"]
+[ext_resource type="SpriteFrames" uid="uid://7ee6gp81iekk" path="res://assets/sprite_frames/body_arms.tres" id="4_0f5yf"]
+[ext_resource type="SpriteFrames" uid="uid://b2n8outwga36v" path="res://assets/sprite_frames/legs.tres" id="5_2pjtc"]
+
+[node name="PlayerGraphics" type="Node3D" unique_id=1385527045 node_paths=PackedStringArray("sprites")]
+script = ExtResource("1_h81ub")
+sprites = [NodePath("Ears"), NodePath("Face"), NodePath("BodyArms"), NodePath("Leg")]
+facing = 1
+state = 1
+carrying = true
+
+[node name="Ears" type="AnimatedSprite3D" parent="." unique_id=1611335915]
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("2_wrkmd")
+animation = &"Idle_0"
+
+[node name="Face" type="AnimatedSprite3D" parent="." unique_id=847584633]
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("3_o5adl")
+animation = &"Idle_0"
+
+[node name="BodyArms" type="AnimatedSprite3D" parent="." unique_id=1149258260]
+sorting_offset = 50.0
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_0f5yf")
+animation = &"Idle_0"
+
+[node name="Leg" type="AnimatedSprite3D" parent="." unique_id=873568132]
+sorting_offset = -100.0
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("5_2pjtc")
+animation = &"Idle_0"
