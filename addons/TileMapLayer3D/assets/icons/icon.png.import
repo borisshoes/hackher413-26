@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwxgdprjw61vw"
-path.s3tc="res://.godot/imported/indoorTileset.png-5aeef4c437311d169ae39e71e699a044.s3tc.ctex"
+uid="uid://b2snx34kyfmpg"
+path.s3tc="res://.godot/imported/icon.png-61808a17d06c5f9441ef2118eba8d0c5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/indoorTileset.png"
-dest_files=["res://.godot/imported/indoorTileset.png-5aeef4c437311d169ae39e71e699a044.s3tc.ctex"]
+source_file="res://addons/TileMapLayer3D/assets/icons/icon.png"
+dest_files=["res://.godot/imported/icon.png-61808a17d06c5f9441ef2118eba8d0c5.s3tc.ctex"]
 
 [params]
 
