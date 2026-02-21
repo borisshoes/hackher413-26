@@ -15,13 +15,14 @@ var local_player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	while local_player == null:
-		local_player = NetHandler.local_player
+	
+	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	local_player = NetHandler.local_player
 	if Input.is_action_just_pressed("pickup"):
 		
 		if local_player.holding_something == null && in_range:

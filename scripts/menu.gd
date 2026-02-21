@@ -16,6 +16,7 @@ func _on_client_pressed() -> void:
 	NetHandler.start_client()
 	var map: Node = Map.instantiate()
 	var HandlerInstance: Node = Handler.instantiate()
+	
 	$"..".call_deferred("add_child", HandlerInstance)
 	$"..".call_deferred("add_child", map)
 	delete()
