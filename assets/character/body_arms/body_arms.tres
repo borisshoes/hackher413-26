@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://7ee6gp81iekk"]
+
+[ext_resource type="Texture2D" uid="uid://d3xum11a6ku5h" path="res://assets/character/body_arms/body_arms_hold_up.png" id="1_l2jg4"]
+[ext_resource type="Texture2D" uid="uid://csdg730anm0ba" path="res://assets/character/body_arms/body_arms_normal.png" id="2_nirfe"]
+[ext_resource type="Texture2D" uid="uid://wrdhlkp07kg5" path="res://assets/character/body_arms/body_arms_right_forward.png" id="3_5sl6j"]
+[ext_resource type="Texture2D" uid="uid://3rg6xdnvhgjn" path="res://assets/character/body_arms/body_arms_left_forward.png" id="4_mwwdm"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l2jg4")
+}],
+"loop": true,
+"name": &"Hold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nirfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5sl6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nirfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mwwdm")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nirfe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

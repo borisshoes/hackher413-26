@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://in7qh8kvdyqb"]
+
+[ext_resource type="Texture2D" uid="uid://bym2akqrr65v6" path="res://assets/sprites/image.png" id="1_5u873"]
+[ext_resource type="Script" uid="uid://b0u8orq4wbtvu" path="res://scripts/dirt.gd" id="1_f5vep"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f5vep"]
+size = Vector3(0.3366089, 0.1394043, 0.15049744)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wul84"]
+height = 0.17333984
+radius = 0.29589844
+
+[node name="Dirt" type="Node3D" unique_id=1792853078]
+script = ExtResource("1_f5vep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1511202917]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=157753774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016174316, 0.004760742, 0.20088151)
+shape = SubResource("BoxShape3D_f5vep")
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D" unique_id=346430732]
+transform = Transform3D(1, 0, 0, 0, 0.92718387, 0.37460658, 0, -0.37460658, 0.92718387, 0, 0, 0.22370863)
+texture = ExtResource("1_5u873")
+region_enabled = true
+region_rect = Rect2(64, 21, 32.226654, 11.5800705)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=137403347]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1709506334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005361378, 0.19318193)
+shape = SubResource("CylinderShape3D_wul84")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

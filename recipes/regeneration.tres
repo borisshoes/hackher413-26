@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://b1f2ksj65qq6w"]
-
-[ext_resource type="Script" uid="uid://bgrphikp4l6qw" path="res://recipe.gd" id="1_4klj5"]
-
-[resource]
-script = ExtResource("1_4klj5")
-recipe_name = "Potion of Regeneration"
-ingredients = Array[String](["A", "B", "B", "C", "D", "D", "D", "A"])
-metadata/_custom_type_script = "uid://bgrphikp4l6qw"

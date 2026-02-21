@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://c63anl2gepy13"]
-
-[ext_resource type="Script" uid="uid://bgrphikp4l6qw" path="res://recipe.gd" id="1_gkigt"]
-
-[resource]
-script = ExtResource("1_gkigt")
-recipe_name = "Potion of Swiftness"
-ingredients = Array[String](["A", "A", "A", "C", "D", "D", "B", "C", "A", "C", "C", "D", "A"])
-metadata/_custom_type_script = "uid://bgrphikp4l6qw"

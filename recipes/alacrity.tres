@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://idn0wxki4ojj"]
-
-[ext_resource type="Script" uid="uid://bgrphikp4l6qw" path="res://recipe.gd" id="1_helgu"]
-
-[resource]
-script = ExtResource("1_helgu")
-recipe_name = "Potion of Alacrity"
-ingredients = Array[String](["D", "B", "A", "C", "C", "C", "D", "A", "D"])
-metadata/_custom_type_script = "uid://bgrphikp4l6qw"

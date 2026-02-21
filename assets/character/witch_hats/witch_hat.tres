@@ -1,0 +1,33 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bfr2uf5f35vr7"]
+
+[ext_resource type="Texture2D" uid="uid://bjv13ld88ewpx" path="res://assets/character/witch_hats/hat_back.png" id="1_tppyt"]
+[ext_resource type="Texture2D" uid="uid://6twmn2tboyd5" path="res://assets/character/witch_hats/hat_front.png" id="2_ydv3k"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tppyt")
+}],
+"loop": true,
+"name": &"Back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ydv3k")
+}],
+"loop": true,
+"name": &"Front",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}]
