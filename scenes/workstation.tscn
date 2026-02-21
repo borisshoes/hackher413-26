@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cox4cwlsrs1mu"]
 
 [ext_resource type="Script" uid="uid://sulkfnpjl0i7" path="res://scripts/workstation.gd" id="1_f6vdx"]
+[ext_resource type="Texture2D" uid="uid://bym2akqrr65v6" path="res://assets/sprites/image.png" id="2_iqqjh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_laxs4"]
 
@@ -9,18 +10,21 @@ size = Vector3(2, 2, 2)
 
 [node name="Workstation" type="Node3D" unique_id=1086137257]
 script = ExtResource("1_f6vdx")
+sprite_texture = ExtResource("2_iqqjh")
+atlas_region = Rect2i(0, 0, 64, 64)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=369093125]
+[node name="CollisionArea" type="StaticBody3D" parent="." unique_id=369093125]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1453939316]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionArea" unique_id=1453939316]
 shape = SubResource("BoxShape3D_laxs4")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=596461236]
+[node name="InteractionArea" type="Area3D" parent="." unique_id=596461236]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2040165520]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=2040165520]
 shape = SubResource("BoxShape3D_ck6fd")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=478115254]
+[node name="Visual" type="Sprite3D" parent="." unique_id=478115254]
+billboard = 1
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_area_3d_body_exited"]

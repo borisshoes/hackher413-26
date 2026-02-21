@@ -5,7 +5,8 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 0
 
 @export var holding_something: Node = null
-
+@onready var detector = $InteractionDetector
+var nearby_interactables := []
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -27,6 +28,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+	if Input.is_action_just_pressed("interact"):
+		try_interact()
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -39,3 +43,22 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func _ready():
+	detector.area_entered.connect(_on_area_entered)
+	detector.area_exited.connect(_on_area_exited)
+
+func _on_area_entered(area):
+	var obj = area.get_parent()
+	if obj.has_method("try_interact"):
+		nearby_interactables.append(obj)
+
+func _on_area_exited(area):
+	var obj = area.get_parent()
+	nearby_interactables.erase(obj)
+
+func try_interact():
+	if nearby_interactables.is_empty():
+		return
+
+	nearby_interactables[0].try_interact(self)
