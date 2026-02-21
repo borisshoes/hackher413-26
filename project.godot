@@ -24,7 +24,7 @@ BrewDatabase="*uid://dg7j1jepilnph"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/github_copilot/plugin.cfg", "res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
+enabled=PackedStringArray("res://addons/TileMapLayer3D/plugin.cfg", "res://addons/github_copilot/plugin.cfg", "res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
 [input]
 
