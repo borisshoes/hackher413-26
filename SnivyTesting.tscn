@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dl1jv5xikkqp5"]
+
+[ext_resource type="SpriteFrames" uid="uid://bfr2uf5f35vr7" path="res://Graphics/WitchHat/WitchHat.tres" id="1_flk8c"]
+[ext_resource type="SpriteFrames" uid="uid://cq5ri2cw6xdye" path="res://Graphics/Ears/Ears.tres" id="2_lw3mr"]
+[ext_resource type="SpriteFrames" uid="uid://gerlcg578frm" path="res://Graphics/Face/PlayerFace.tres" id="3_f6oqb"]
+[ext_resource type="SpriteFrames" uid="uid://7ee6gp81iekk" path="res://Graphics/BodyArms/BodyArms.tres" id="4_xqyb6"]
+[ext_resource type="SpriteFrames" uid="uid://b2n8outwga36v" path="res://Graphics/Legs/Legs.tres" id="5_e6qft"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_flk8c"]
+
+[node name="SnivyTesting" type="Node2D" unique_id=558932425]
+
+[node name="Node3D" type="Node3D" parent="." unique_id=997734369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Ears2" type="AnimatedSprite3D" parent="Node3D" unique_id=1214465539]
+sorting_offset = 100.0
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("1_flk8c")
+
+[node name="Ears" type="AnimatedSprite3D" parent="Node3D" unique_id=1824200971]
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("2_lw3mr")
+
+[node name="Face" type="AnimatedSprite3D" parent="Node3D" unique_id=912731030]
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("3_f6oqb")
+
+[node name="BodyArms" type="AnimatedSprite3D" parent="Node3D" unique_id=434629281]
+sorting_offset = 50.0
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_xqyb6")
+
+[node name="Leg" type="AnimatedSprite3D" parent="Node3D" unique_id=1503360960]
+sorting_offset = -100.0
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("5_e6qft")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1477250313]
+transform = Transform3D(1, 0, 0, 0, 0.92718387, 0.37460658, 0, -0.37460658, 0.92718387, 0, 1.8301613, 3.3705463)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1010944207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_flk8c")
