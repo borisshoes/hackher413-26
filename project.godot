@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Noray="*uid://gu4bv4tgms3x"
 PacketHandshake="*uid://tt3j25a05n7c"
 NetHandler="*uid://uvmxakh5qt70"
+BrewDatabase="*uid://dg7j1jepilnph"
 
 [editor_plugins]
 
