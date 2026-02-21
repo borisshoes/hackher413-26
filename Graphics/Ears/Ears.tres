@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cq5ri2cw6xdye"]
+
+[ext_resource type="Texture2D" uid="uid://tpkkxai3o7cg" path="res://Graphics/Ears/Ears.png" id="1_060om"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_060om")
+}],
+"loop": true,
+"name": &"NORTH",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_060om")
+}],
+"loop": true,
+"name": &"SOUTH",
+"speed": 5.0
+}]
