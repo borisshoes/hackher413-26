@@ -5,7 +5,7 @@ size = Vector3(13.931885, 0.46557617, 11.96814)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oj3tl"]
 
-[node name="Floor" type="Node3D" unique_id=127762742]
+[node name="Node3D" type="Node3D" unique_id=127762742]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=657857690]
 
