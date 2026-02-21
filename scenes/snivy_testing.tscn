@@ -1,22 +1,21 @@
 [gd_scene format=3 uid="uid://cxiyf8k58yw80"]
 
 [ext_resource type="Script" uid="uid://b1me4deq1envq" path="res://scripts/player_graphics.gd" id="1_flk8c"]
-[ext_resource type="SpriteFrames" uid="uid://cq5ri2cw6xdye" path="res://assets/character/ears/ears.tres" id="2_lw3mr"]
-[ext_resource type="SpriteFrames" uid="uid://gerlcg578frm" path="res://assets/character/face/player_face.tres" id="3_f6oqb"]
-[ext_resource type="SpriteFrames" uid="uid://7ee6gp81iekk" path="res://assets/character/body_arms/body_arms.tres" id="4_xqyb6"]
-[ext_resource type="SpriteFrames" uid="uid://b2n8outwga36v" path="res://assets/character/legs/legs.tres" id="5_e6qft"]
+[ext_resource type="SpriteFrames" uid="uid://cq5ri2cw6xdye" path="res://assets/sprite_frames/ears.tres" id="2_lw3mr"]
+[ext_resource type="SpriteFrames" uid="uid://gerlcg578frm" path="res://assets/sprite_frames/player_face.tres" id="3_f6oqb"]
+[ext_resource type="SpriteFrames" uid="uid://7ee6gp81iekk" path="res://assets/sprite_frames/body_arms.tres" id="4_xqyb6"]
+[ext_resource type="SpriteFrames" uid="uid://b2n8outwga36v" path="res://assets/sprite_frames/legs.tres" id="5_e6qft"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_flk8c"]
 
 [node name="SnivyTesting" type="Node2D" unique_id=558932425]
 
-[node name="PlayerGraphics" type="Node3D" parent="." unique_id=997734369 node_paths=PackedStringArray("EarsSprite", "FaceSprite", "BodyArmsSprite", "LegsSprite")]
+[node name="PlayerGraphics" type="Node3D" parent="." unique_id=997734369 node_paths=PackedStringArray("sprites")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_flk8c")
-EarsSprite = NodePath("Ears")
-FaceSprite = NodePath("Face")
-BodyArmsSprite = NodePath("BodyArms")
-LegsSprite = NodePath("Leg")
+sprites = [NodePath("Ears"), NodePath("Face"), NodePath("BodyArms"), NodePath("Leg")]
+state = 1
+carrying = true
 
 [node name="Ears" type="AnimatedSprite3D" parent="PlayerGraphics" unique_id=1824200971]
 pixel_size = 0.0625
@@ -24,7 +23,7 @@ billboard = 1
 double_sided = false
 texture_filter = 0
 sprite_frames = ExtResource("2_lw3mr")
-animation = &"SOUTH"
+animation = &"Idle_0"
 
 [node name="Face" type="AnimatedSprite3D" parent="PlayerGraphics" unique_id=912731030]
 pixel_size = 0.0625
@@ -32,6 +31,7 @@ billboard = 1
 double_sided = false
 texture_filter = 0
 sprite_frames = ExtResource("3_f6oqb")
+animation = &"Idle_0"
 
 [node name="BodyArms" type="AnimatedSprite3D" parent="PlayerGraphics" unique_id=434629281]
 sorting_offset = 50.0
@@ -40,6 +40,7 @@ billboard = 1
 double_sided = false
 texture_filter = 0
 sprite_frames = ExtResource("4_xqyb6")
+animation = &"Idle_0"
 
 [node name="Leg" type="AnimatedSprite3D" parent="PlayerGraphics" unique_id=1503360960]
 sorting_offset = -100.0
@@ -48,6 +49,7 @@ billboard = 1
 double_sided = false
 texture_filter = 0
 sprite_frames = ExtResource("5_e6qft")
+animation = &"Idle_0"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1477250313]
 transform = Transform3D(1, 0, 0, 0, 0.92718387, 0.37460658, 0, -0.37460658, 0.92718387, 0, 1.8301613, 3.3705463)

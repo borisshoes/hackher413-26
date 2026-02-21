@@ -1,0 +1,55 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cq5ri2cw6xdye"]
+
+[ext_resource type="Texture2D" uid="uid://tpkkxai3o7cg" path="res://assets/character/ears/ears.png" id="1_060om"]
+[ext_resource type="Texture2D" uid="uid://d31o5nkqvn467" path="res://assets/character/ears/EarsSide.png" id="2_owyhr"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_060om")
+}],
+"loop": true,
+"name": &"Idle_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_owyhr")
+}],
+"loop": true,
+"name": &"Idle_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_060om")
+}],
+"loop": true,
+"name": &"Idle_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_060om")
+}],
+"loop": true,
+"name": &"Walk_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_owyhr")
+}],
+"loop": true,
+"name": &"Walk_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_060om")
+}],
+"loop": true,
+"name": &"Walk_2",
+"speed": 5.0
+}]
