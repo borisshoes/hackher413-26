@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cxiyf8k58yw80"]
 
+[ext_resource type="Script" uid="uid://b1me4deq1envq" path="res://Scripts/PlayerGraphics.gd" id="1_flk8c"]
 [ext_resource type="SpriteFrames" uid="uid://cq5ri2cw6xdye" path="res://Graphics/Ears/Ears.tres" id="2_lw3mr"]
 [ext_resource type="SpriteFrames" uid="uid://gerlcg578frm" path="res://Graphics/Face/PlayerFace.tres" id="3_f6oqb"]
 [ext_resource type="SpriteFrames" uid="uid://7ee6gp81iekk" path="res://Graphics/BodyArms/BodyArms.tres" id="4_xqyb6"]
@@ -9,24 +10,30 @@
 
 [node name="SnivyTesting" type="Node2D" unique_id=558932425]
 
-[node name="Node3D" type="Node3D" parent="." unique_id=997734369]
+[node name="PlayerGraphics" type="Node3D" parent="." unique_id=997734369 node_paths=PackedStringArray("EarsSprite", "FaceSprite", "BodyArmsSprite", "LegsSprite")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_flk8c")
+EarsSprite = NodePath("Ears")
+FaceSprite = NodePath("Face")
+BodyArmsSprite = NodePath("BodyArms")
+LegsSprite = NodePath("Leg")
 
-[node name="Ears" type="AnimatedSprite3D" parent="Node3D" unique_id=1824200971]
+[node name="Ears" type="AnimatedSprite3D" parent="PlayerGraphics" unique_id=1824200971]
 pixel_size = 0.0625
 billboard = 1
 double_sided = false
 texture_filter = 0
 sprite_frames = ExtResource("2_lw3mr")
+animation = &"SOUTH"
 
-[node name="Face" type="AnimatedSprite3D" parent="Node3D" unique_id=912731030]
+[node name="Face" type="AnimatedSprite3D" parent="PlayerGraphics" unique_id=912731030]
 pixel_size = 0.0625
 billboard = 1
 double_sided = false
 texture_filter = 0
 sprite_frames = ExtResource("3_f6oqb")
 
-[node name="BodyArms" type="AnimatedSprite3D" parent="Node3D" unique_id=434629281]
+[node name="BodyArms" type="AnimatedSprite3D" parent="PlayerGraphics" unique_id=434629281]
 sorting_offset = 50.0
 pixel_size = 0.0625
 billboard = 1
@@ -34,7 +41,7 @@ double_sided = false
 texture_filter = 0
 sprite_frames = ExtResource("4_xqyb6")
 
-[node name="Leg" type="AnimatedSprite3D" parent="Node3D" unique_id=1503360960]
+[node name="Leg" type="AnimatedSprite3D" parent="PlayerGraphics" unique_id=1503360960]
 sorting_offset = -100.0
 pixel_size = 0.0625
 billboard = 1

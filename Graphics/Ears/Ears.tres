@@ -9,6 +9,14 @@ animations = [{
 "texture": ExtResource("1_060om")
 }],
 "loop": true,
-"name": &"default",
+"name": &"NORTH",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_060om")
+}],
+"loop": true,
+"name": &"SOUTH",
 "speed": 5.0
 }]
