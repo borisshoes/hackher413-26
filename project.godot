@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="hackher"
-run/main_scene="uid://f3cfi4ccbivb"
+run/main_scene="uid://iksnp4dl2bt"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
