@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvsp06udukv8v" path="res://assets/sprites/items.png" id="2_s8enn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vpy52"]
-size = Vector3(0.16833496, 0.23187256, 0.07841492)
+size = Vector3(0.29434776, 0.48947048, 0.13478851)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_krft3"]
 properties/0/path = NodePath(".:position")
@@ -19,16 +19,17 @@ height = 0.30999756
 radius = 0.35253906
 
 [node name="item" type="Node3D" unique_id=2028317467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7733288, 0)
 script = ExtResource("1_244al")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1786573429]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=979200285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0026245117, -0.51431274, 0.011650085)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00044345856, -0.50222564, 0.039836884)
 shape = SubResource("BoxShape3D_vpy52")
 
 [node name="Sprite3D" type="Sprite3D" parent="StaticBody3D" unique_id=1809301182]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5053996, 0)
+transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, 0, -0.5053996, 0)
 texture = ExtResource("2_s8enn")
 region_enabled = true
 region_rect = Rect2(16, 32, 16, 16)
@@ -39,11 +40,11 @@ replication_config = SubResource("SceneReplicationConfig_krft3")
 [node name="Area3D" type="Area3D" parent="." unique_id=1289989326]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=786644771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4560852, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4600621, 0)
 shape = SubResource("CylinderShape3D_244al")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1090925956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.053781748, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29229313, 0)
 billboard = 1
 render_priority = 2
 
