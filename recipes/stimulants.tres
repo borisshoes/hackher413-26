@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://d3212h4rmovvf"]
+
+[ext_resource type="Script" uid="uid://bgrphikp4l6qw" path="res://recipe.gd" id="1_bjdv8"]
+
+[resource]
+script = ExtResource("1_bjdv8")
+recipe_name = "Potion of Stimulants"
+ingredients = Array[String](["A", "B", "C", "D", "D", "B", "B", "B", "C", "A", "A"])
+metadata/_custom_type_script = "uid://bgrphikp4l6qw"

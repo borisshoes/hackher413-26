@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cox4cwlsrs1mu"]
+
+[ext_resource type="Script" uid="uid://sulkfnpjl0i7" path="res://workstation.gd" id="1_afbs8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_laxs4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ck6fd"]
+size = Vector3(2, 2, 2)
+
+[node name="Workstation" type="Node3D" unique_id=1086137257]
+script = ExtResource("1_afbs8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=369093125]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1453939316]
+shape = SubResource("BoxShape3D_laxs4")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=596461236]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2040165520]
+shape = SubResource("BoxShape3D_ck6fd")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=478115254]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
