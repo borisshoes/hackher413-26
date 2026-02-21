@@ -1,4 +1,12 @@
 extends Node3D
+class_name Item
+
+
+@export var ID := 1
+@export var XOffset := 16
+@export var YOffset := 32
+@export var Sprite := "res://assets/sprites/items.png"
+
 
 #Used by server
 var player_holding = null
@@ -10,12 +18,16 @@ var in_range = false
 
 @onready var collision = $StaticBody3D/CollisionShape3D
 @onready var label = $Label3D
+@onready var tex = $StaticBody3D/Sprite3D
 var local_player = null
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	print(Sprite)
+	tex.texture = load(Sprite)
+	tex.region_rect = Rect2(Vector2(XOffset, YOffset), Vector2(16, 16))
+		
 	
 	pass # Replace with function body.
 
@@ -27,9 +39,11 @@ func _process(delta: float) -> void:
 		
 		if local_player.holding_something == null && in_range:
 			pickup.rpc(int(local_player.name))
+			label.text ="Place (E)"
 			local_player.holding_something = self
 		elif local_player.holding_something == self:
 			place.rpc(int(local_player.name))
+			label.text ="Pick Up (E)"
 			local_player.holding_something = null
 	
 	if !multiplayer.is_server(): return
@@ -52,7 +66,7 @@ func _process(delta: float) -> void:
 	if !multiplayer.is_server(): return
 	player_holding = null
 	collision.disabled = false
-	position -= Vector3(0,1,1)
+	position -= Vector3(0,1,0)
 
 
 

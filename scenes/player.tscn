@@ -28,3 +28,9 @@ size = 7.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1500784104]
 replication_config = SubResource("SceneReplicationConfig_cxr5p")
+
+[node name="InteractionDetector" type="Area3D" parent="." unique_id=432185683]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractionDetector" unique_id=237250702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028686523, 1.1857975, 0.60374725)
+shape = SubResource("BoxShape3D_e80uo")
