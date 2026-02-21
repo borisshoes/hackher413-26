@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://f3cfi4ccbivb"]
+
+[ext_resource type="Script" uid="uid://bs73gd8jeynyf" path="res://multiplayer_spawner.gd" id="1_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://b02nchvg72klm" path="res://Player.tscn" id="2_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://7utsma2yoibd" path="res://Menu.tscn" id="2_r0du0"]
+
+[node name="Main" type="Node3D" unique_id=1471255917]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1940605386]
+_spawnable_scenes = PackedStringArray("uid://b02nchvg72klm")
+spawn_path = NodePath("..")
+script = ExtResource("1_uu6xs")
+network_player = ExtResource("2_cm0pq")
+
+[node name="Menu" parent="." unique_id=1996498191 instance=ExtResource("2_r0du0")]
