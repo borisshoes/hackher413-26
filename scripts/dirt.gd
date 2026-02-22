@@ -115,6 +115,16 @@ func try_interact(player):
 		return
 
 	interact(player)
+
+# Override request_use to skip active_users lockout - dirt is instant use
+@rpc("any_peer")
+func request_use():
+	if !multiplayer.is_server():
+		return
+	# Don't add to active_users, just emit signal and call start_use
+	var peer_id = multiplayer.get_remote_sender_id()
+	start_use(peer_id)
+	emit_signal("use_started", peer_id)
 	
 @rpc("any_peer","call_local")
 func server_planter_function(id: int) -> void:
@@ -130,15 +140,6 @@ func server_planter_function(id: int) -> void:
 		planted_id = id_held
 		progress = 0
 		player.take_hand()
-	
-	# Instantly release this workstation since planting is instant
-	var peer_id = player.get_multiplayer_authority()
-	if peer_id in active_users:
-		active_users.erase(peer_id)
-		sync_active_users.rpc(active_users)
-		end_use(peer_id)
 
 func interact(player):
-	print("PLANTING TIME")
 	server_planter_function.rpc_id(1, int(player.name))
-	# virtual function

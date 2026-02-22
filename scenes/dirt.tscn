@@ -34,9 +34,11 @@ properties/2/replication_mode = 1
 
 [node name="Dirt" type="Node3D" unique_id=1792853078]
 script = ExtResource("1_f5vep")
-plant_array = [ExtResource("2_ar6cg"), ExtResource("3_3m875"), ExtResource("4_0rgk4"), ExtResource("5_f8n8l"), ExtResource("6_js6od"), ExtResource("7_b0yii"), ExtResource("8_me323"), ExtResource("9_250kf")]
+plant_array = Array[PackedScene]([ExtResource("2_ar6cg"), ExtResource("3_3m875"), ExtResource("4_0rgk4"), ExtResource("5_f8n8l"), ExtResource("6_js6od"), ExtResource("7_b0yii"), ExtResource("8_me323"), ExtResource("9_250kf")])
 sprite_texture = ExtResource("2_5kli6")
 atlas_region = Rect2i(64, 21, 32, 11)
+label_offset = Vector3(0, 0.5, 0)
+allow_multiple_interacts = true
 
 [node name="InteractionLabel" type="Label3D" parent="." unique_id=1680721440]
 visible = false
