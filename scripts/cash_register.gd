@@ -1,7 +1,7 @@
 extends Workstation
 class_name cash_register
 
-@onready var popup:Sprite2D = $Sprite2D
+@onready var popup:Sprite2D = $OrderSlip
 @export var customers: customerline
 var current_order = null
 
