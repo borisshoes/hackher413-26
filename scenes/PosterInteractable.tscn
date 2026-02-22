@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://df1x43h8mod8t"]
+
+[ext_resource type="Script" uid="uid://sulkfnpjl0i7" path="res://scripts/workstation.gd" id="1_p7ekr"]
+[ext_resource type="Texture2D" uid="uid://bym2akqrr65v6" path="res://assets/sprites/image.png" id="2_bvvax"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_laxs4"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ck6fd"]
+size = Vector3(1.1970215, 1, 1.0899658)
+
+[node name="PosterInteractable" type="Node3D" unique_id=1086137257]
+script = ExtResource("1_p7ekr")
+sprite_texture = ExtResource("2_bvvax")
+atlas_region = Rect2i(0, 0, 64, 64)
+
+[node name="CollisionArea" type="StaticBody3D" parent="." unique_id=369093125]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionArea" unique_id=1453939316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5467386, -0.044647753)
+shape = SubResource("BoxShape3D_laxs4")
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=596461236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7209089)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=2040165520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29400635)
+shape = SubResource("BoxShape3D_ck6fd")
+
+[node name="Visual" type="Sprite3D" parent="." unique_id=478115254]
+billboard = 1
+
+[node name="InteractionLabel" type="Label3D" parent="." unique_id=364426871]
+visible = false
+billboard = 1
+no_depth_test = true
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_area_3d_body_exited"]
