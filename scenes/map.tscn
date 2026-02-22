@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dwxgdprjw61vw" path="res://assets/textures/indoorTileset.png" id="4_8qak7"]
 [ext_resource type="Texture2D" uid="uid://pwn6t3tbat55" path="res://assets/textures/RoomTiles.png" id="6_nakos"]
 [ext_resource type="PackedScene" uid="uid://in7qh8kvdyqb" path="res://scenes/dirt.tscn" id="7_jh32y"]
-[ext_resource type="PackedScene" path="res://scenes/seed_spawner.tscn" id="8_be0no"]
+[ext_resource type="PackedScene" uid="uid://m3fknlq35hfl" path="res://scenes/seed_spawner.tscn" id="8_be0no"]
 [ext_resource type="PackedScene" uid="uid://cefvaufcf755d" path="res://scenes/potion_spawner.tscn" id="9_be0no"]
 [ext_resource type="PackedScene" uid="uid://cox4cwlsrs1mu" path="res://scenes/workstation.tscn" id="10_mlgqr"]
 [ext_resource type="Script" uid="uid://gdxvy8dnakpl" path="res://scripts/cauldron.gd" id="11_wslke"]
@@ -530,6 +530,7 @@ texture = ExtResource("14_c00ee")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.76218, -1.5)
 script = ExtResource("17_mo32q")
 customers = NodePath("../Node3D")
+current_order = -1
 label_offset = Vector3(0, 0.75, 0)
 
 [node name="CollisionArea" parent="CashRegister" index="0" unique_id=369093125]

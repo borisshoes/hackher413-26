@@ -144,7 +144,7 @@ func request_use(caller_peer_id: int = 0):
 	emit_signal("use_started", peer_id)
 
 
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func end_use_request():
 	if !multiplayer.is_server():
 		return

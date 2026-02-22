@@ -8,6 +8,20 @@ const JUMP_VELOCITY = 0
 
 #Used by client
 @export var holding_something: Node = null
+@export var held_id: int = -1
+
+
+@rpc("any_peer", "call_local")
+func send_local_id(player: int, getting: bool) -> void:
+	if getting:
+		var idt = -1
+		if holding_something.Id != null:
+			idt = holding_something.Id
+		send_local_id.rpc_id(player, idt, false)
+	else:
+		held_id = player
+
+
 var active_workstation: Workstation = null
 
 @export var camera_fixed_z: float = 2.35  # World Z position for camera
@@ -61,7 +75,7 @@ func _physics_process(delta: float) -> void:
 func take_hand() -> void:
 	holding_something.queue_free()
 	holding_something = null
-	
+	held_id = -1
 	
 
 func set_active_workstation(ws):

@@ -9,6 +9,11 @@ size = Vector3(0.5, 0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ck6fd"]
 size = Vector3(1.3026123, 1.1904297, 2.5100937)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qyy31"]
+properties/0/path = NodePath(".:current_order")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="CashRegister" type="Node3D" unique_id=1086137257]
 script = ExtResource("1_qyy31")
 sprite_texture = ExtResource("3_yqhqo")
@@ -33,6 +38,9 @@ texture = ExtResource("3_yqhqo")
 visible = false
 billboard = 1
 no_depth_test = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=209279776]
+replication_config = SubResource("SceneReplicationConfig_qyy31")
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_area_3d_body_exited"]
