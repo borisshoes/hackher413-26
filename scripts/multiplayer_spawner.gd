@@ -20,6 +20,6 @@ func spawn_player(id: int) -> void:
 
 
 func _on_spawned(node: Node) -> void:
-	print("Hi!")
+	print(node.name)
 	if node.name == str(multiplayer.get_unique_id()):
 		NetHandler.local_player = node

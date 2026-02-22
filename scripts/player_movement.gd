@@ -4,6 +4,9 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 0
 
+#used by server
+
+#Used by client
 @export var holding_something: Node = null
 @onready var detector = $InteractionDetector
 var nearby_interactables := []
@@ -29,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_pressed("interact"):
-		try_interact()
+		try_interact_player()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -43,6 +46,14 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	
+	
+func take_hand() -> void:
+	holding_something.queue_free()
+	holding_something = null
+	
+	
 
 func _ready():
 	detector.area_entered.connect(_on_area_entered)
@@ -57,7 +68,7 @@ func _on_area_exited(area):
 	var obj = area.get_parent()
 	nearby_interactables.erase(obj)
 
-func try_interact():
+func try_interact_player():
 	if nearby_interactables.is_empty():
 		return
 

@@ -4,6 +4,7 @@ const ADDRESS = "localhost"
 const PORT = 3621
 
 @export var local_player: Node = null
+@export var spawner: Node = null
 
 var peer: ENetMultiplayerPeer
 
