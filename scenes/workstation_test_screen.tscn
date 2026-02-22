@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cyip387x8qimj" path="res://assets/textures/Greenhouse Window.png" id="5_dvwea"]
 [ext_resource type="Script" uid="uid://gdxvy8dnakpl" path="res://scripts/cauldron.gd" id="6_71cxq"]
 [ext_resource type="PackedScene" uid="uid://sc6l2fgalufy" path="res://assets/items/item.tscn" id="6_rwt1y"]
+[ext_resource type="Script" uid="uid://cw34rc46xjls6" path="res://scripts/cash_register.gd" id="9_dvwea"]
+[ext_resource type="PackedScene" uid="uid://cu1tbfy1f0lrh" path="res://scenes/cash_register.tscn" id="9_kvqc1"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y35xu"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -98,7 +100,7 @@ script = ExtResource("3_71cxq")
 tileset_texture = ExtResource("4_kvqc1")
 tile_size = Vector2i(16, 16)
 
-[node name="Map" type="Node3D" unique_id=701369880]
+[node name="Map2" type="Node3D" unique_id=701369880]
 
 [node name="MainFloor" type="StaticBody3D" parent="." unique_id=465323399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.05, -1.5)
@@ -407,3 +409,20 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.6
 light_energy = 10.0
 light_indirect_energy = 4.0
 spot_range = 10.0
+
+[node name="CashRegister" parent="." unique_id=1627631163 instance=ExtResource("9_kvqc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.76218, -1.5)
+script = ExtResource("9_dvwea")
+
+[node name="CollisionArea" parent="CashRegister" index="0" unique_id=369093125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.176607, 0)
+
+[node name="CollisionShape3D" parent="CashRegister/InteractionArea" parent_id_path=PackedInt32Array(1627631163, 596461236) index="0" unique_id=2040165520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24060059, -0.20581055, 0.5613022)
+
+[node name="Visual" parent="CashRegister" index="2" unique_id=478115254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1866461, 0)
+pixel_size = 0.03125
+texture_filter = 0
+
+[editable path="CashRegister"]

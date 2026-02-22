@@ -80,4 +80,4 @@ func try_interact_player():
 	if active_workstation == null:
 		return
 
-	active_workstation.try_interact(self)
+	active_workstation.request_use()

@@ -1,17 +1,17 @@
-[gd_scene format=3 uid="uid://cox4cwlsrs1mu"]
+[gd_scene format=3 uid="uid://cu1tbfy1f0lrh"]
 
-[ext_resource type="Script" uid="uid://sulkfnpjl0i7" path="res://scripts/workstation.gd" id="1_f6vdx"]
-[ext_resource type="Texture2D" uid="uid://bym2akqrr65v6" path="res://assets/sprites/image.png" id="2_iqqjh"]
+[ext_resource type="Script" uid="uid://sulkfnpjl0i7" path="res://scripts/workstation.gd" id="1_qyy31"]
+[ext_resource type="Texture2D" uid="uid://ci2fkltuoebxy" path="res://assets/sprites/cash_register.png" id="3_yqhqo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_laxs4"]
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ck6fd"]
-size = Vector3(1.1970215, 1, 1.125824)
+size = Vector3(1.3026123, 1.1904297, 2.5100937)
 
-[node name="Workstation" type="Node3D" unique_id=1086137257]
-script = ExtResource("1_f6vdx")
-sprite_texture = ExtResource("2_iqqjh")
+[node name="CashRegister" type="Node3D" unique_id=1086137257]
+script = ExtResource("1_qyy31")
+sprite_texture = ExtResource("3_yqhqo")
 atlas_region = Rect2i(0, 0, 64, 64)
 
 [node name="CollisionArea" type="StaticBody3D" parent="." unique_id=369093125]
@@ -25,7 +25,9 @@ shape = SubResource("BoxShape3D_laxs4")
 shape = SubResource("BoxShape3D_ck6fd")
 
 [node name="Visual" type="Sprite3D" parent="." unique_id=478115254]
+pixel_size = 0.03175
 billboard = 1
+texture = ExtResource("3_yqhqo")
 
 [node name="InteractionLabel" type="Label3D" parent="." unique_id=364426871]
 visible = false
