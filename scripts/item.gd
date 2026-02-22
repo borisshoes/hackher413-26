@@ -24,7 +24,6 @@ var local_player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(Sprite)
 	tex.texture = load(Sprite)
 	tex.region_rect = Rect2(Vector2(XOffset, YOffset), Vector2(16, 16))
 		
@@ -49,7 +48,7 @@ func _process(delta: float) -> void:
 	if !multiplayer.is_server(): return
 	
 	if player_holding != null:
-		position = player_holding.position + Vector3(0,2,1)
+		position = player_holding.position + Vector3(0,2, 0)
 		
 		
 	pass
@@ -66,7 +65,7 @@ func _process(delta: float) -> void:
 	if !multiplayer.is_server(): return
 	player_holding = null
 	collision.disabled = false
-	position -= Vector3(0,1,0)
+	position -= Vector3(0,.5,-.25)
 
 
 

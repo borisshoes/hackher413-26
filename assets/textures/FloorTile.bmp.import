@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2a06yn1r75jy"
-path.s3tc="res://.godot/imported/BodyArmsSideidle.png-a112ed3b6ed1a5b1e7fb49d04bcf67ea.s3tc.ctex"
+uid="uid://cyjec1wh7frwk"
+path.s3tc="res://.godot/imported/FloorTile.bmp-344268e08862423080a34731aa2c0a0b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/character/body_arms/BodyArmsSideidle.png"
-dest_files=["res://.godot/imported/BodyArmsSideidle.png-a112ed3b6ed1a5b1e7fb49d04bcf67ea.s3tc.ctex"]
+source_file="res://assets/textures/FloorTile.bmp"
+dest_files=["res://.godot/imported/FloorTile.bmp-344268e08862423080a34731aa2c0a0b.s3tc.ctex"]
 
 [params]
 

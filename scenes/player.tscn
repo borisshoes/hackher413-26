@@ -1,26 +1,21 @@
 [gd_scene format=3 uid="uid://b02nchvg72klm"]
 
 [ext_resource type="Script" uid="uid://dcvrb1xk6dw57" path="res://scripts/player_movement.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://bcmx2vvarjumm" path="res://assets/sprites/icon.svg" id="2_qhqgy"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_e80uo"]
-size = Vector3(1.2947998, 1.2832031, 0.6152954)
+[ext_resource type="PackedScene" uid="uid://dlsck8mmnrngn" path="res://scenes/player_graphics.tscn" id="2_g2els"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cxr5p"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_e80uo"]
+size = Vector3(0.001, 1.2832031, 1999.9691)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2els"]
+size = Vector3(0.83251953, 1.1451416, 0.3241577)
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1799680435 groups=["player"]]
 script = ExtResource("1_g2els")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1662576539]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028686523, 1.1857975, 0.60374725)
-shape = SubResource("BoxShape3D_e80uo")
-
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1269635434]
-transform = Transform3D(1, 0, 0, 0, 0.92479193, 0.38047326, 0, -0.38047326, 0.92479193, 0, 1.1317291, 0.6425197)
-texture = ExtResource("2_qhqgy")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1580219293]
 transform = Transform3D(1, 0, 0, 0, 0.92479193, 0.38047326, 0, -0.38047326, 0.92479193, 0, 2.6574287, 4.35094)
@@ -32,5 +27,12 @@ replication_config = SubResource("SceneReplicationConfig_cxr5p")
 [node name="InteractionDetector" type="Area3D" parent="." unique_id=432185683]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractionDetector" unique_id=237250702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028686523, 1.1857975, 0.60374725)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4215581, 1.1857975, 0.08709431)
 shape = SubResource("BoxShape3D_e80uo")
+
+[node name="PlayerGraphics" parent="." unique_id=1385527045 instance=ExtResource("2_g2els")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0327384, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1874783871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005126953, 1.0735474, -0.02645874)
+shape = SubResource("BoxShape3D_g2els")
