@@ -35,7 +35,7 @@ func interact(player):
 	if(held != null):
 		if(held.Id == current_order):
 			player_interacted.take_hand()
-			#ADD MONEy
+			$"../UI".add_cash.rpc_id(1, 20)
 			customers.destroy_front()
 			current_order = -1
 			return;
