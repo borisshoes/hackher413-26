@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://d3do33ve86ak3"]
+
+[ext_resource type="Script" uid="uid://b1me4deq1envq" path="res://scripts/player_graphics.gd" id="1_el4aw"]
+[ext_resource type="SpriteFrames" uid="uid://cq5ri2cw6xdye" path="res://assets/sprite_frames/ears.tres" id="2_js7x4"]
+[ext_resource type="SpriteFrames" uid="uid://gerlcg578frm" path="res://assets/sprite_frames/player_face.tres" id="3_e1lxu"]
+[ext_resource type="SpriteFrames" uid="uid://7ee6gp81iekk" path="res://assets/sprite_frames/body_arms.tres" id="4_0wyf5"]
+[ext_resource type="SpriteFrames" uid="uid://b2n8outwga36v" path="res://assets/sprite_frames/legs.tres" id="5_kfuka"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h81ub"]
+properties/0/path = NodePath(".:facing")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:state")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:carrying")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="PlayerGraphics" type="Node3D" unique_id=1385527045 node_paths=PackedStringArray("sprites")]
+script = ExtResource("1_el4aw")
+sprites = [NodePath("Ears"), NodePath("Face"), NodePath("BodyArms"), NodePath("Leg")]
+
+[node name="Ears" type="AnimatedSprite3D" parent="." unique_id=1611335915]
+pixel_size = 0.0625
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("2_js7x4")
+animation = &"Walk_0"
+
+[node name="Face" type="AnimatedSprite3D" parent="." unique_id=847584633]
+pixel_size = 0.0625
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("3_e1lxu")
+animation = &"Idle_0"
+
+[node name="BodyArms" type="AnimatedSprite3D" parent="." unique_id=1149258260]
+pixel_size = 0.0625
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_0wyf5")
+animation = &"Walk_0"
+
+[node name="Leg" type="AnimatedSprite3D" parent="." unique_id=873568132]
+pixel_size = 0.0625
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("5_kfuka")
+animation = &"Idle_0"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=277084970]
+replication_config = SubResource("SceneReplicationConfig_h81ub")
