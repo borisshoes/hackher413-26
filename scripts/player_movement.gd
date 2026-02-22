@@ -68,7 +68,9 @@ func close_current_workstation():
 
 
 func _input(event):
+	print("input detected")
 	if event.is_action_pressed("interact") and active_workstation:
+		
 		if multiplayer.is_server():
 			active_workstation.request_use()
 		else:

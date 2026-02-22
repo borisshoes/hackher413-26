@@ -1,5 +1,5 @@
-extends Node3D
 
+extends Workstation
 
 @export var planted := false
 @export var progress := 0
@@ -12,24 +12,24 @@ var accepted_ids = [50, 51, 52, 53]
 
 signal pressed_signal
 
-@export var interaction_text:String = "Interact (F)"
+
 @export var interaction_radius:float = 1.5
-@export var sprite_texture:Texture2D
-@export var atlas_region:Rect2i = Rect2i(64, 21, 32, 11)
+
+
 @export var press_depth := 0.1
 @export var press_time := 0.1
 
-@onready var stage1 = $StaticBody3D/Planted
-@onready var stage2 = $StaticBody3D/Grown
+@onready var stage1 = $CollisionArea/Planted
+@onready var stage2 = $CollisionArea/Grown
 
-@onready var progress_bar_texture = $StaticBody3D/ProgressBar
-@onready var progress_bar = $StaticBody3D/ProgressBar/SubViewport/ProgressBar
-@onready var area = $Area3D
-@onready var sprite = $StaticBody3D/Sprite3D
+@onready var progress_bar_texture = $CollisionArea/ProgressBar
+@onready var progress_bar = $CollisionArea/ProgressBar/SubViewport/ProgressBar
+
+
 
 @onready var location_1 = $Location1
 @onready var location_2 = $Location2
-var nearby_players := {}
+
 
 
 func _physics_process(delta: float) -> void:
@@ -75,17 +75,27 @@ func _process(delta: float) -> void:
 		stage2.visible = false
 		progress_bar_texture.visible = false
 func _ready():
+	sprite = $CollisionArea/Visual
+	add_to_group("workstation")
+	
 	sprite.texture = sprite_texture
 	sprite.region_enabled = true
 	sprite.region_rect = atlas_region
+
+	#_apply_sizes()
+	
+	label.text = interaction_text
+	label.position = label_offset
+	label.visible = false
 
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
-	if not body.is_in_group("players"):
+	
+	if not body.is_in_group("player"):
 		return
-
+	
 	if body.is_multiplayer_authority():
 		nearby_players[body] = true
 		#show_tooltip(body)
@@ -110,7 +120,6 @@ func server_planter_function(id: int) -> void:
 	var holding = player.holding_something
 	if holding == null: return
 	var id_held = int(holding.Id)
-	print(id_held)
 	if id_held in accepted_ids:
 		planted = true
 		planted_id = id_held
@@ -118,15 +127,16 @@ func server_planter_function(id: int) -> void:
 		player.take_hand()
 
 func interact(player):
+	print("PLANTING TIME")
 	server_planter_function.rpc_id(1, int(player.name))
 	# virtual function
 	
 	
-func show_tooltip(player):
-	var tooltip = preload("res://scenes/tooltip.tscn").instantiate()
-	tooltip.target = $TooltipAnchor
-	tooltip.get_node("Label").text = interaction_text
-	player.add_child(tooltip)
+#func show_tooltip(player):
+	#var tooltip = preload("res://scenes/tooltip.tscn").instantiate()
+	#tooltip.target = $TooltipAnchor
+	#tooltip.get_node("Label").text = interaction_text
+	#player.add_child(tooltip)
 
 func hide_tooltip(player):
 	for child in player.get_children():
