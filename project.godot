@@ -26,6 +26,34 @@ BrewDatabase="*uid://dg7j1jepilnph"
 
 enabled=PackedStringArray("res://addons/TileMapLayer3D/plugin.cfg", "res://addons/github_copilot/plugin.cfg", "res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
+[importer_defaults]
+
+texture={
+"compress/channel_pack": 0,
+"compress/hdr_compression": 1,
+"compress/high_quality": false,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"compress/rdo_quality_loss": 0.0,
+"compress/uastc_level": 0,
+"detect_3d/compress_to": 0,
+"mipmaps/generate": false,
+"mipmaps/limit": 3,
+"process/channel_remap/alpha": 3,
+"process/channel_remap/blue": 2,
+"process/channel_remap/green": 1,
+"process/channel_remap/red": 0,
+"process/fix_alpha_border": false,
+"process/hdr_as_srgb": false,
+"process/hdr_clamp_exposure": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"process/size_limit": 0,
+"roughness/mode": 1,
+"roughness/src_normal": ""
+}
+
 [input]
 
 pickup={
@@ -46,6 +74,5 @@ interact={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-textures/canvas_textures/default_texture_repeat=1
 rendering_device/driver.windows="d3d12"
 textures/default_filters/anisotropic_filtering_level=0

@@ -1,0 +1,78 @@
+[gd_resource type="VisualShader" format=3 uid="uid://ocfsa7u7qna8"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_e47dw"]
+parameter_name = "original_palette"
+texture_filter = 1
+texture_repeat = 2
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_r2fse"]
+parameter_name = "new_palette"
+texture_filter = 1
+texture_repeat = 2
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_r2fse"]
+output_port_for_preview = 0
+expanded_output_ports = [0]
+source = 5
+texture_type = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_e47dw"]
+input_name = "texture"
+
+[sub_resource type="VisualShaderNodeIntParameter" id="VisualShaderNodeIntParameter_mmpya"]
+parameter_name = "color_count"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_1og6x"]
+size = Vector2(580, 920)
+expression = "final_color = color;
+alpha = color.a;
+    // Palette swap loop
+for (int i = 0; i < color_count; i++) {
+    float u = (float(i) + 0.5) / float(color_count);
+    vec2 uv = vec2(u, 0.5);
+    vec4 palette_color = texture(original_palette, uv);
+    if (distance(color.rgb, palette_color.rgb) < 0.1) {
+    	final_color = texture(new_palette, uv);
+    	break;
+	}
+}
+
+//ALPHA = color.a; // preserve transparency
+"
+
+[resource]
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(1000, 220)
+nodes/fragment/0/position = Vector2(920, -260)
+nodes/fragment/6/node = SubResource("VisualShaderNodeIntParameter_mmpya")
+nodes/fragment/6/position = Vector2(-460, 580)
+nodes/fragment/7/node = SubResource("VisualShaderNodeExpression_1og6x")
+nodes/fragment/7/position = Vector2(260, -220)
+nodes/fragment/7/size = Vector2(580, 920)
+nodes/fragment/7/input_ports = "0,5,color;1,8,original_palette;2,8,new_palette;3,1,color_count;"
+nodes/fragment/7/output_ports = "0,5,final_color;1,0,alpha;"
+nodes/fragment/7/expression = "final_color = color;
+alpha = color.a;
+    // Palette swap loop
+for (int i = 0; i < color_count; i++) {
+    float u = (float(i) + 0.5) / float(color_count);
+    vec2 uv = vec2(u, 0.5);
+    vec4 palette_color = texture(original_palette, uv);
+    if (distance(color.rgb, palette_color.rgb) < 0.1) {
+    	final_color = texture(new_palette, uv);
+    	break;
+	}
+}
+
+//ALPHA = color.a; // preserve transparency
+"
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_e47dw")
+nodes/fragment/10/position = Vector2(-800, -20)
+nodes/fragment/11/node = SubResource("VisualShaderNodeTexture2DParameter_r2fse")
+nodes/fragment/11/position = Vector2(-820, 320)
+nodes/fragment/12/node = SubResource("VisualShaderNodeTexture_r2fse")
+nodes/fragment/12/position = Vector2(-397.35126, -274.7211)
+nodes/fragment/13/node = SubResource("VisualShaderNodeInput_e47dw")
+nodes/fragment/13/position = Vector2(-740, -200)
+nodes/fragment/connections = PackedInt32Array(6, 0, 7, 3, 10, 0, 7, 1, 11, 0, 7, 2, 12, 0, 7, 0, 7, 0, 0, 0, 7, 1, 0, 1, 13, 0, 12, 2)

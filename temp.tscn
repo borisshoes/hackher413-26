@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://co252s1cq3ua8"]
+
+[ext_resource type="Shader" uid="uid://bs816kvynit6l" path="res://colorswap.gdshader" id="1_pippe"]
+[ext_resource type="Texture2D" uid="uid://dcb005k38q5p4" path="res://textures/items_map.png" id="2_ufh25"]
+[ext_resource type="Texture2D" uid="uid://c10pb76bge7b8" path="res://textures/color_palettes/dynamic/8.PNG" id="3_h2clf"]
+[ext_resource type="Texture2D" uid="uid://dv1tsjldhcb57" path="res://textures/color_palettes/dynamic/12.PNG" id="4_q51th"]
+[ext_resource type="Texture2D" uid="uid://d4nw1o0wubbdb" path="res://textures/color_palettes/static/1.png" id="5_iyses"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1nlwk"]
+load_path = "res://.godot/imported/0.png-7e3fc64da1152559c2287400e722cad1.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6ebu"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_pippe")
+shader_parameter/sprite_index_tex = ExtResource("2_ufh25")
+shader_parameter/new_palette = SubResource("CompressedTexture2D_1nlwk")
+shader_parameter/color_count = 6
+shader_parameter/debug_magenta = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4i6i"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_pippe")
+shader_parameter/sprite_index_tex = ExtResource("2_ufh25")
+shader_parameter/new_palette = ExtResource("3_h2clf")
+shader_parameter/color_count = 6
+shader_parameter/debug_magenta = false
+
+[sub_resource type="Shader" id="Shader_1hi8c"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D sprite_index_tex : filter_nearest, repeat_disable;
+uniform sampler2D new_palette : filter_nearest, repeat_disable;
+uniform int color_count;
+uniform bool debug_magenta = false;
+
+void fragment() {
+    // Sample the index texture (R channel = 0..1) and alpha
+    vec4 idx_tex = texture(sprite_index_tex, UV);
+    float idx_f = idx_tex.r;
+    float alpha = idx_tex.a;
+
+    // Fully transparent pixels stay transparent
+    if (alpha < 0.01) {
+        ALBEDO = vec3(0.0);
+        ALPHA = 0.0;
+    }
+
+    vec4 result;
+
+    if (debug_magenta) {
+        result.rgb = vec3(1.0, 0.0, 1.0);
+        result.a = 1.0;
+    } else {
+        // Convert normalized 0..1 to integer index 0..color_count-1
+        int idx = int(floor(idx_f * float(color_count) + 0.5));
+
+        // Fetch the color from the palette
+        float u = (float(idx) + 0.5) / float(color_count);
+        result = texture(new_palette, vec2(u, 0.5));
+    }
+
+    ALBEDO = result.rgb;
+    ALPHA = alpha; // preserve original transparency
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufh25"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_1hi8c")
+shader_parameter/sprite_index_tex = ExtResource("2_ufh25")
+shader_parameter/new_palette = ExtResource("4_q51th")
+shader_parameter/color_count = 6
+shader_parameter/debug_magenta = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q51th"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_pippe")
+shader_parameter/sprite_index_tex = ExtResource("2_ufh25")
+shader_parameter/new_palette = ExtResource("3_h2clf")
+shader_parameter/color_count = 6
+shader_parameter/debug_magenta = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmyum"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_pippe")
+shader_parameter/sprite_index_tex = ExtResource("2_ufh25")
+shader_parameter/new_palette = ExtResource("5_iyses")
+shader_parameter/color_count = 6
+shader_parameter/debug_magenta = false
+
+[node name="Node3D" type="Node3D" unique_id=906364660]
+
+[node name="potion" type="Node3D" parent="." unique_id=795418550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.9162426)
+
+[node name="bottle" type="Sprite3D" parent="potion" unique_id=970430934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.036626, -3.8207965, 1.093442)
+material_override = SubResource("ShaderMaterial_b6ebu")
+pixel_size = 1.0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_ufh25")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="liquid" type="Sprite3D" parent="potion" unique_id=1024397733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.036626, -3.8207965, 0.9828129)
+material_override = SubResource("ShaderMaterial_v4i6i")
+pixel_size = 1.0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_ufh25")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+
+[node name="potion2" type="Node3D" parent="." unique_id=402859715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.64494, 2.4076157, 9.121879)
+
+[node name="bottle" type="Sprite3D" parent="potion2" unique_id=1729611244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.036626, -3.8207965, 1.093442)
+material_override = SubResource("ShaderMaterial_b6ebu")
+pixel_size = 1.0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_ufh25")
+region_enabled = true
+region_rect = Rect2(48, 32, 16, 16)
+
+[node name="liquid" type="Sprite3D" parent="potion2" unique_id=1949789010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.036626, -3.8207965, 0.9828129)
+material_override = SubResource("ShaderMaterial_ufh25")
+pixel_size = 1.0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_ufh25")
+region_enabled = true
+region_rect = Rect2(32, 31, 16, 16)
+
+[node name="seed" type="Node3D" parent="." unique_id=451056297]
+
+[node name="seed" type="Sprite3D" parent="seed" unique_id=1340305561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.036626, -3.8207965, 1.093442)
+material_override = SubResource("ShaderMaterial_q51th")
+pixel_size = 1.0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_ufh25")
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 16)
+
+[node name="bag" type="Sprite3D" parent="seed" unique_id=1630270850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.036626, -3.8207965, 0.9828129)
+material_override = SubResource("ShaderMaterial_lmyum")
+pixel_size = 1.0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_ufh25")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
