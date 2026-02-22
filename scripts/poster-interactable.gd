@@ -1,5 +1,4 @@
 extends Workstation
-class_name cash_register
 
 # Called when the player actually triggers the interaction
 @onready var pop_up:Sprite2D = $Popup

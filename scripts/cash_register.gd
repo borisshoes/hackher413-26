@@ -1,6 +1,11 @@
 extends Workstation
 class_name cash_register
 
+@export var customers: customerline
+var current_order = null
+
+
+
 # Called when the player actually triggers the interaction
 @rpc('any_peer','call_local')
 func interact(player):
@@ -9,12 +14,28 @@ func interact(player):
 	if(player == 0):
 		player = 1
 	
+	
+	if customers.front == null:
+		print("You have no customers!!!")
+		return
+	
+	if(current_order == null):
+		current_order = randi_range(2,6)
+	
 	print("Player:" + str(player))
 	#access player
-	var held = get_tree().get_root().get_node("Node3D/"+str(player)).holding_something
+	
+	var playerNode:player_movement = get_tree().get_root().get_node("Node3D/"+str(player))
+	var held:Item = player.holding_something
 	if(held != null):
-		print("held item to be deleted")
-		held.queue_free()
+		if(held.Id == current_order):
+			playerNode.take_hand()
+			#ADD MONEy
+			customers.destroy_front()
+			current_order = null
+			
+		
+		
 	
 	# Here you could open a UI for the player
 

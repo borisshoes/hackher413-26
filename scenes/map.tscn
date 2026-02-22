@@ -7,11 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://dwxgdprjw61vw" path="res://assets/textures/indoorTileset.png" id="4_8qak7"]
 [ext_resource type="Texture2D" uid="uid://pwn6t3tbat55" path="res://assets/textures/RoomTiles.png" id="6_nakos"]
 [ext_resource type="PackedScene" uid="uid://in7qh8kvdyqb" path="res://scenes/dirt.tscn" id="7_jh32y"]
-[ext_resource type="PackedScene" uid="uid://m3fknlq35hfl" path="res://scenes/seed_spawner.tscn" id="8_be0no"]
+[ext_resource type="PackedScene" path="res://scenes/seed_spawner.tscn" id="8_be0no"]
 [ext_resource type="PackedScene" uid="uid://cefvaufcf755d" path="res://scenes/potion_spawner.tscn" id="9_be0no"]
 [ext_resource type="PackedScene" uid="uid://cox4cwlsrs1mu" path="res://scenes/workstation.tscn" id="10_mlgqr"]
 [ext_resource type="Script" uid="uid://gdxvy8dnakpl" path="res://scripts/cauldron.gd" id="11_wslke"]
 [ext_resource type="PackedScene" uid="uid://crjcnfo0v5ag6" path="res://scenes/line.tscn" id="12_wslke"]
+[ext_resource type="PackedScene" uid="uid://cbdu7stotibg1" path="res://scenes/ui.tscn" id="13_c00ee"]
+[ext_resource type="Script" uid="uid://dyii3oqhdgrvp" path="res://scripts/poster-interactable.gd" id="13_n1psn"]
+[ext_resource type="Texture2D" uid="uid://sya8ej8atxb0" path="res://assets/sprites/recipes.png" id="14_c00ee"]
+[ext_resource type="PackedScene" uid="uid://cu1tbfy1f0lrh" path="res://scenes/cash_register.tscn" id="16_c70he"]
+[ext_resource type="Script" uid="uid://cw34rc46xjls6" path="res://scripts/cash_register.gd" id="17_mo32q"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y35xu"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -493,3 +498,49 @@ instant_interact = true
 
 [node name="Node3D" parent="." unique_id=1153274422 instance=ExtResource("12_wslke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8230963, 0.71949315, -1.0075682)
+
+[node name="UI" parent="." unique_id=708709527 instance=ExtResource("13_c00ee")]
+
+[node name="PosterInteractable" parent="." unique_id=661204403 instance=ExtResource("10_mlgqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7178378, 0.60050535, -3.8655014)
+script = ExtResource("13_n1psn")
+sprite_texture = null
+atlas_region = Rect2i(0, 0, 0, 0)
+allow_multiple_interacts = true
+
+[node name="CollisionShape3D" parent="PosterInteractable/InteractionArea" parent_id_path=PackedInt32Array(661204403, 596461236) index="0" unique_id=2040165520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.009292603)
+
+[node name="Popup" type="Sprite2D" parent="PosterInteractable" unique_id=936903635]
+visible = false
+z_index = 100
+position = Vector2(246, 156)
+texture = ExtResource("14_c00ee")
+
+[node name="Sprite3D" type="Sprite3D" parent="PosterInteractable" unique_id=1076938908]
+transform = Transform3D(0.9964047, -0.08472133, 0, 0.08472133, 0.9964047, 0, 0, 0, 1, -0.02893734, 0.64949465, -0.124498606)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("14_c00ee")
+
+[node name="CashRegister" parent="." unique_id=23806028 instance=ExtResource("16_c70he")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.76218, -1.5)
+script = ExtResource("17_mo32q")
+label_offset = Vector3(0, 0.75, 0)
+
+[node name="CollisionArea" parent="CashRegister" index="0" unique_id=369093125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.176607, 0)
+
+[node name="CollisionShape3D" parent="CashRegister/InteractionArea" parent_id_path=PackedInt32Array(23806028, 596461236) index="0" unique_id=2040165520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24060059, -0.20581055, 0.5613022)
+
+[node name="Visual" parent="CashRegister" index="2" unique_id=478115254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1866461, 0)
+pixel_size = 0.03125
+
+[node name="InteractionLabel" parent="CashRegister" index="3" unique_id=364426871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = true
+
+[editable path="PosterInteractable"]
+[editable path="CashRegister"]

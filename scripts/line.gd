@@ -1,4 +1,5 @@
 extends Node3D
+class_name customerline
 
 @export var front: Node = null
 @export var customer: PackedScene
