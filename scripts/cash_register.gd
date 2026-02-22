@@ -1,5 +1,4 @@
 extends Workstation
-class_name cash_register
 
 # Called when the player actually triggers the interaction
 @rpc('any_peer','call_local')

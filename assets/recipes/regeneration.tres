@@ -6,4 +6,5 @@
 script = ExtResource("1_4klj5")
 recipe_name = "Potion of Regeneration"
 ingredients = Array[String](["A", "B", "B", "C", "D", "D", "D", "A"])
+potion_id = 3
 metadata/_custom_type_script = "uid://bgrphikp4l6qw"
