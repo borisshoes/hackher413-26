@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvsp06udukv8v" path="res://assets/sprites/items.png" id="2_s8enn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vpy52"]
-size = Vector3(0.29434776, 0.48947048, 0.13478851)
+size = Vector3(0.43922424, 0.76445746, 0.21177745)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_krft3"]
 properties/0/path = NodePath(".:position")
@@ -25,11 +25,12 @@ script = ExtResource("1_244al")
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1786573429]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=979200285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00044345856, -0.50222564, 0.039836884)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008705139, -0.48894656, 0.0031716228)
 shape = SubResource("BoxShape3D_vpy52")
 
 [node name="Sprite3D" type="Sprite3D" parent="StaticBody3D" unique_id=1809301182]
-transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, 0, -0.5053996, 0)
+transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, -0.5053996, 0)
+texture_filter = 0
 texture = ExtResource("2_s8enn")
 region_enabled = true
 region_rect = Rect2(16, 32, 16, 16)
@@ -44,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4600621, 0)
 shape = SubResource("CylinderShape3D_244al")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1090925956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29229313, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14805293, 0)
 billboard = 1
 render_priority = 2
 

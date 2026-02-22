@@ -65,7 +65,7 @@ func _process(delta: float) -> void:
 	if !multiplayer.is_server(): return
 	player_holding = null
 	collision.disabled = false
-	position -= Vector3(0,.7,0)
+	position -= Vector3(0,.5,-.25)
 
 
 
