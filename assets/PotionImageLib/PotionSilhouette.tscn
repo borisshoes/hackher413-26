@@ -7,7 +7,7 @@
 scale = Vector2(2, 2)
 script = ExtResource("1_y0j3h")
 potionID = 2
-potionsprites = [NodePath("Out"), NodePath("")]
+potionsprites = [NodePath("Out"), NodePath("Out2")]
 
 [node name="Out" type="Sprite2D" parent="." unique_id=800395978]
 modulate = Color(0, 0, 0, 1)

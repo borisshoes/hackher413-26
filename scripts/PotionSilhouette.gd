@@ -19,7 +19,10 @@ func _process(delta: float) -> void:
 				i.region_rect.position.y = 32
 		else:
 			i.region_rect.position.x = indexconversion[potionID] * 16
-			i.region_rect.position.y = 16
+			if i.name == "Out":
+				i.region_rect.position.y = 0
+			else:
+				i.region_rect.position.y = 16
 		
 			
 	

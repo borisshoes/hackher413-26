@@ -509,7 +509,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7178378, 0.60050535, -3.865
 script = ExtResource("13_n1psn")
 sprite_texture = null
 atlas_region = Rect2i(0, 0, 0, 0)
+label_offset = null
+interaction_text = null
+interaction_size = null
+collision_size = null
 allow_multiple_interacts = true
+instant_interact = null
 
 [node name="CollisionShape3D" parent="PosterInteractable/InteractionArea" parent_id_path=PackedInt32Array(661204403, 596461236) index="0" unique_id=2040165520]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.009292603)
@@ -553,7 +558,8 @@ position = Vector2(241, 156)
 texture = ExtResource("18_mo32q")
 script = ExtResource("19_6k6j1")
 
-[node name="PotionSihlouette" parent="CashRegister/OrderSlip" unique_id=818743554 instance=ExtResource("20_m335s")]
+[node name="PotionSihlouette" parent="CashRegister/OrderSlip" unique_id=818743554 node_paths=PackedStringArray("potionsprites") instance=ExtResource("20_m335s")]
+potionsprites = [NodePath("Out"), null]
 
 [editable path="PosterInteractable"]
 [editable path="CashRegister"]
