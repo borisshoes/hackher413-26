@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://crjcnfo0v5ag6"]
+
+[ext_resource type="Script" uid="uid://bihgub3rxbnpi" path="res://scripts/line.gd" id="1_pdjlr"]
+[ext_resource type="PackedScene" uid="uid://d3rqnc1ih15b0" path="res://scenes/customer.tscn" id="2_ce3t5"]
+
+[node name="Node3D" type="Node3D" unique_id=1153274422]
+script = ExtResource("1_pdjlr")
+customer = ExtResource("2_ce3t5")

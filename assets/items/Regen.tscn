@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c6cpkwxetof0k"]
+
+[ext_resource type="Script" uid="uid://fh1qokl0d03u" path="res://scripts/item.gd" id="1_ddism"]
+[ext_resource type="Texture2D" uid="uid://dvsp06udukv8v" path="res://assets/sprites/items.png" id="2_esw5r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vpy52"]
+size = Vector3(0.43922424, 0.76445746, 0.21177745)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_krft3"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("StaticBody3D/CollisionShape3D:disabled")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_244al"]
+height = 0.30999756
+radius = 0.35253906
+
+[node name="item" type="Node3D" unique_id=2028317467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8761209, 0)
+script = ExtResource("1_ddism")
+Id = 2
+colorMod = Color(1, 1, 1, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1786573429]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=979200285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008705139, -0.48894656, 0.0031716228)
+shape = SubResource("BoxShape3D_vpy52")
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D" unique_id=1809301182]
+transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, -0.5053996, 0)
+texture_filter = 0
+texture = ExtResource("2_esw5r")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1178643710]
+replication_config = SubResource("SceneReplicationConfig_krft3")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1289989326]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=786644771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4600621, 0)
+shape = SubResource("CylinderShape3D_244al")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1090925956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14805293, 0)
+billboard = 1
+render_priority = 2
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

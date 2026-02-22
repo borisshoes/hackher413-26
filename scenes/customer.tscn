@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://d3rqnc1ih15b0"]
+
+[ext_resource type="Script" uid="uid://domf6sygu1nnn" path="res://scripts/customer.gd" id="1_xss0h"]
+[ext_resource type="SpriteFrames" uid="uid://cq5ri2cw6xdye" path="res://assets/sprite_frames/ears.tres" id="2_qqxhk"]
+[ext_resource type="SpriteFrames" uid="uid://gerlcg578frm" path="res://assets/sprite_frames/player_face.tres" id="3_846g6"]
+[ext_resource type="SpriteFrames" uid="uid://7ee6gp81iekk" path="res://assets/sprite_frames/body_arms.tres" id="4_qj8gj"]
+[ext_resource type="SpriteFrames" uid="uid://b2n8outwga36v" path="res://assets/sprite_frames/legs.tres" id="5_w2wat"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xss0h"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Node3D" type="Node3D" unique_id=1694492731]
+script = ExtResource("1_xss0h")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=239920351]
+replication_config = SubResource("SceneReplicationConfig_xss0h")
+
+[node name="Ears" type="AnimatedSprite3D" parent="." unique_id=1988653548]
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("2_qqxhk")
+animation = &"Walk_0"
+
+[node name="Face" type="AnimatedSprite3D" parent="." unique_id=2034594530]
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("3_846g6")
+animation = &"Idle_0"
+
+[node name="BodyArms" type="AnimatedSprite3D" parent="." unique_id=325404037]
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_qj8gj")
+animation = &"Walk_0"
+
+[node name="Leg" type="AnimatedSprite3D" parent="." unique_id=1429396039]
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("5_w2wat")
+animation = &"Idle_0"

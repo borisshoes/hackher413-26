@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c0qrtge3jhl45" path="res://assets/items/mint_seed.tscn" id="9_250kf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5vep"]
-size = Vector3(0.32349777, 0.1394043, 0.15049744)
+size = Vector3(0.26354253, 0.1394043, 0.1102829)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_elwhm"]
 viewport_path = NodePath("CollisionArea/ProgressBar/SubViewport")
@@ -47,7 +47,7 @@ visible = false
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -0.49600077)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionArea" unique_id=157753774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00044059753, 0.004760742, 0.20088157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0005570054, 0.004760742, 0.1807743)
 shape = SubResource("BoxShape3D_f5vep")
 
 [node name="Visual" type="Sprite3D" parent="CollisionArea" unique_id=346430732]
