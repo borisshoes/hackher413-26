@@ -51,7 +51,8 @@ func start_use(peer_id:int):
 	NetHandler.local_player.send_local_id.rpc(1, peer_id, true)
 	local_held_id = NetHandler.local_player.held_id
 	if local_held_id == -1 or local_held_id != current_order:
-			popup.visible = true
+		# Show popup on the specific client who interacted
+		show_popup.rpc_id(peer_id)
 	print("[CashRegister] start_use() for peer: ", peer_id)
 	print("[CashRegister] Player is now actively using the cauldron.")
 	interact.rpc_id(1, peer_id)
@@ -60,5 +61,14 @@ func end_use(peer_id:int):
 	print(peer_id)
 	print("[CashRegister] end_use() for peer: ", peer_id)
 	print("[CashRegister] Player has stopped using the cauldron.")
+	# Hide popup on the specific client
+	hide_popup.rpc_id(peer_id)
+
+@rpc("any_peer", "call_local")
+func show_popup():
+	popup.visible = true
+
+@rpc("any_peer", "call_local")
+func hide_popup():
 	popup.visible = false
 	
