@@ -5,11 +5,18 @@ extends Workstation
 
 # Called when the server registers the player starting to use this workstation
 func start_use(peer_id:int):
-	print("[CashRegister] start_use() for peer: ", peer_id)
-	print("[CashRegister] Player is now actively using the cauldron.")
-	pop_up.visible = true
+	print("[Poster] start_use() for peer: ", peer_id)
+	show_popup.rpc_id(peer_id)
+
 # Called when the server registers the player ending use
 func end_use(peer_id:int):
-	print("[CashRegister] end_use() for peer: ", peer_id)
-	print("[CashRegister] Player has stopped using the cauldron.")
+	print("[Poster] end_use() for peer: ", peer_id)
+	hide_popup.rpc_id(peer_id)
+
+@rpc("any_peer", "call_local")
+func show_popup():
+	pop_up.visible = true
+
+@rpc("any_peer", "call_local")
+func hide_popup():
 	pop_up.visible = false
