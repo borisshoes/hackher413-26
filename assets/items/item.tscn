@@ -21,7 +21,6 @@ radius = 0.35253906
 [node name="item" type="Node3D" unique_id=2028317467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8761209, 0)
 script = ExtResource("1_244al")
-ID = 0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1786573429]
 

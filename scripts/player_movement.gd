@@ -76,7 +76,7 @@ func _input(event):
 		try_interact_player()
 
 func try_interact_player():
-	if nearby_interactables.is_empty():
+	if active_workstation == null:
 		return
 
-	nearby_interactables[0].try_interact(self)
+	active_workstation.try_interact(self)
