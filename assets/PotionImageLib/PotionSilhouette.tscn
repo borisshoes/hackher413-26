@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c0upebryqpeu6"]
+
+[ext_resource type="Texture2D" uid="uid://dvsp06udukv8v" path="res://assets/sprites/items.png" id="1_186go"]
+[ext_resource type="Script" uid="uid://cb5x7fe5cp74t" path="res://scripts/PotionSilhouette.gd" id="1_y0j3h"]
+
+[node name="PotionSihlouette" type="Node2D" unique_id=818743554 node_paths=PackedStringArray("potionsprites")]
+scale = Vector2(2, 2)
+script = ExtResource("1_y0j3h")
+potionID = 2
+potionsprites = [NodePath("Out"), NodePath("")]
+
+[node name="Out" type="Sprite2D" parent="." unique_id=800395978]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = 200
+texture = ExtResource("1_186go")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="Out2" type="Sprite2D" parent="." unique_id=1113697327]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = 200
+texture = ExtResource("1_186go")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
