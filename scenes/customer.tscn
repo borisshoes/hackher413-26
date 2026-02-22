@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d3rqnc1ih15b0"]
 
-[ext_resource type="Script" uid="uid://domf6sygu1nnn" path="res://scripts/customer.gd" id="1_xss0h"]
+[ext_resource type="Script" path="res://scripts/customer.gd" id="1_xss0h"]
 [ext_resource type="SpriteFrames" uid="uid://cq5ri2cw6xdye" path="res://assets/sprite_frames/ears.tres" id="2_qqxhk"]
 [ext_resource type="SpriteFrames" uid="uid://gerlcg578frm" path="res://assets/sprite_frames/player_face.tres" id="3_846g6"]
 [ext_resource type="SpriteFrames" uid="uid://7ee6gp81iekk" path="res://assets/sprite_frames/body_arms.tres" id="4_qj8gj"]

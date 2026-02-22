@@ -7,6 +7,16 @@ var ui_instances := {} # map of player node -> UI Control
 
 # Grown plant IDs (seed_id + 100): 150=Lavender, 151=Lily, 152=Mandrake, 153=Mint
 var accepted_ids = [150, 151, 152, 153]
+const BOTTLE_ID = 1
+
+# Map potion_id to scene path
+var potion_scenes = {
+	2: "res://assets/items/Regen.tscn",
+	3: "res://assets/items/Alakitty.tscn",
+	4: "res://assets/items/Spiwits.tscn",
+	5: "res://assets/items/Stimmewlants.tscn",
+	6: "res://assets/items/Swiftnuss.tscn",
+}
 
 # Map plant ID to ingredient name for brewing
 func _get_ingredient_name(item_id: int) -> String:
@@ -25,11 +35,6 @@ const MAX_INGREDIENTS = 8
 func start_use(peer_id: int):
 	print("[Cauldron] start_use called on %s, is_server: %s" % [name, multiplayer.is_server()])
 	
-	# Don't accept more than 8 ingredients
-	if current_brew.size() >= MAX_INGREDIENTS:
-		print("[Cauldron] Already full, cannot add more ingredients")
-		return
-	
 	var player = _get_player_from_peer(peer_id)
 	if player == null:
 		print("[Cauldron] Player not found for peer %d" % peer_id)
@@ -40,6 +45,16 @@ func start_use(peer_id: int):
 		return
 	
 	var item_id = int(player.holding_something.Id)
+	
+	# If cauldron is full's check for bottle to complete brew
+	if current_brew.size() >= MAX_INGREDIENTS:
+		if item_id == BOTTLE_ID:
+			_try_complete_brew(player)
+		else:
+			print("[Cauldron] Cauldron is full - use an empty bottle to complete")
+		return
+	
+	# Otherwise, try to add an ingredient
 	if item_id not in accepted_ids:
 		print("Cauldron doesn't accept this item (ID: %d)" % item_id)
 		return
@@ -51,26 +66,44 @@ func start_use(peer_id: int):
 	
 	# Sync to all clients
 	sync_current_brew.rpc(current_brew)
-	
-	# Check if cauldron is full
-	if current_brew.size() >= MAX_INGREDIENTS:
-		var recipe = BrewDatabase.match_recipe(current_brew)
-		if recipe != null:
-			print("[Server] Recipe matched: %s" % recipe.recipe_name)
-			complete_brew(recipe)
-		else:
-			print("[Server] No matching recipe found!")
-			# Clear the cauldron anyway
-			current_brew.clear()
-			sync_current_brew.rpc(current_brew)
 
-# -------------------------
-# SERVER: Complete brew
-# -------------------------
-func complete_brew(recipe: Recipe):
-	print("[Server] Brew completed: %s" % recipe.recipe_name)
+func _try_complete_brew(player):
+	print("[Cauldron] Attempting to complete brew with bottle")
+	var recipe = BrewDatabase.match_recipe(current_brew)
+	
+	# Consume the bottle
+	player.take_hand()
+	
+	if recipe != null:
+		print("[Server] Recipe matched: %s (potion_id: %d)" % [recipe.recipe_name, recipe.potion_id])
+		_spawn_potion_for_player(player, recipe.potion_id)
+	else:
+		print("[Server] No matching recipe found! Brew failed.")
+	
+	# Clear the cauldron
 	current_brew.clear()
 	sync_current_brew.rpc(current_brew)
+
+func _spawn_potion_for_player(player, potion_id: int):
+	if not potion_scenes.has(potion_id):
+		push_error("[Cauldron] No scene found for potion_id: %d" % potion_id)
+		return
+	
+	var scene_path = potion_scenes[potion_id]
+	var potion_scene = load(scene_path)
+	var potion = potion_scene.instantiate()
+	
+	# Position above player
+	potion.position = player.position + Vector3(0, 2, 0)
+	
+	# Give to player
+	potion.player_holding = player
+	potion.get_node("StaticBody3D/CollisionShape3D").disabled = true
+	player.holding_something = potion
+	
+	# Spawn via network
+	NetHandler.spawner.get_parent().call_deferred("add_child", potion, true)
+	print("[Server] Spawned potion %d for player %s" % [potion_id, player.name])
 
 # -------------------------
 # CLIENT: Sync current brew
