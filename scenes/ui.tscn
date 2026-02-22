@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://cbdu7stotibg1"]
+
+[ext_resource type="Texture2D" uid="uid://mmacrsk7edcm" path="res://assets/sprites/UI/coin_HUD.png" id="1_8dubc"]
+[ext_resource type="Script" uid="uid://rmyved8ialem" path="res://scripts/multisprite_number.gd" id="2_p7vwb"]
+[ext_resource type="Texture2D" uid="uid://cbo1l6tcusccw" path="res://assets/sprites/UI/numbers.png" id="3_ktti3"]
+[ext_resource type="Texture2D" uid="uid://cdfjj3g5cc8we" path="res://assets/sprites/UI/DayHUD.png" id="4_cgfq5"]
+[ext_resource type="Texture2D" uid="uid://br0ktgw3im40b" path="res://assets/sprites/UI/TimerHud.png" id="5_7dvkv"]
+[ext_resource type="Texture2D" uid="uid://cuhtl8bhep62r" path="res://assets/sprites/UI/nixieNumbers.png" id="6_vdcm2"]
+
+[node name="UI" type="Node2D" unique_id=708709527]
+texture_filter = 1
+
+[node name="Coins" type="Sprite2D" parent="." unique_id=1214065018 node_paths=PackedStringArray("numSprites")]
+position = Vector2(417, 297)
+texture = ExtResource("1_8dubc")
+script = ExtResource("2_p7vwb")
+numSprites = [NodePath("1"), NodePath("10"), NodePath("100"), NodePath("1000"), NodePath("10000"), NodePath("100000")]
+realNum = 156
+
+[node name="100000" type="Sprite2D" parent="Coins" unique_id=522376618]
+z_index = 10
+texture_filter = 1
+position = Vector2(-56, -8)
+texture = ExtResource("3_ktti3")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="10000" type="Sprite2D" parent="Coins" unique_id=1827228873]
+z_index = 10
+texture_filter = 1
+position = Vector2(-42, -8)
+texture = ExtResource("3_ktti3")
+centered = false
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="1000" type="Sprite2D" parent="Coins" unique_id=6239074]
+z_index = 10
+texture_filter = 1
+position = Vector2(-28, -8)
+texture = ExtResource("3_ktti3")
+centered = false
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="100" type="Sprite2D" parent="Coins" unique_id=985439673]
+z_index = 10
+texture_filter = 1
+position = Vector2(-14, -8)
+texture = ExtResource("3_ktti3")
+centered = false
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)
+
+[node name="10" type="Sprite2D" parent="Coins" unique_id=276592165]
+z_index = 10
+texture_filter = 1
+position = Vector2(0, -8)
+texture = ExtResource("3_ktti3")
+centered = false
+region_enabled = true
+region_rect = Rect2(64, 0, 16, 16)
+
+[node name="1" type="Sprite2D" parent="Coins" unique_id=978932543]
+z_index = 10
+texture_filter = 1
+position = Vector2(14, -8)
+texture = ExtResource("3_ktti3")
+centered = false
+region_enabled = true
+region_rect = Rect2(80, 0, 16, 16)
+
+[node name="Day" type="Sprite2D" parent="." unique_id=232706230 node_paths=PackedStringArray("numSprites")]
+position = Vector2(441, 266)
+texture = ExtResource("4_cgfq5")
+script = ExtResource("2_p7vwb")
+numSprites = [NodePath("1")]
+
+[node name="1" type="Sprite2D" parent="Day" unique_id=37144909]
+z_index = 10
+texture_filter = 1
+position = Vector2(15, -8)
+texture = ExtResource("3_ktti3")
+centered = false
+region_enabled = true
+region_rect = Rect2(80, 0, 16, 16)
+
+[node name="Timer" type="Sprite2D" parent="." unique_id=1927311127]
+position = Vector2(240, 39)
+scale = Vector2(2, 2)
+texture = ExtResource("5_7dvkv")
+
+[node name="Second" type="Node" parent="Timer" unique_id=1802875342 node_paths=PackedStringArray("numSprites")]
+script = ExtResource("2_p7vwb")
+numSprites = [NodePath("1"), NodePath("10")]
+realNum = 52
+
+[node name="1" type="Sprite2D" parent="Timer/Second" unique_id=1595759802]
+z_index = 10
+texture_filter = 1
+position = Vector2(280, 23)
+scale = Vector2(2, 2)
+texture = ExtResource("6_vdcm2")
+centered = false
+region_enabled = true
+region_rect = Rect2(80, 0, 16, 16)
+
+[node name="10" type="Sprite2D" parent="Timer/Second" unique_id=1245300383]
+z_index = 10
+texture_filter = 1
+position = Vector2(252, 23)
+scale = Vector2(2, 2)
+texture = ExtResource("6_vdcm2")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="colon" type="Sprite2D" parent="Timer" unique_id=1053061040]
+z_index = 10
+texture_filter = 1
+position = Vector2(-8, -8)
+texture = ExtResource("6_vdcm2")
+centered = false
+region_enabled = true
+region_rect = Rect2(160, 0, 16, 16)
+
+[node name="Minute" type="Node" parent="Timer" unique_id=492305921 node_paths=PackedStringArray("numSprites")]
+script = ExtResource("2_p7vwb")
+numSprites = [NodePath("60"), NodePath("600")]
+realNum = 24
+
+[node name="60" type="Sprite2D" parent="Timer/Minute" unique_id=1098942001]
+z_index = 10
+texture_filter = 1
+position = Vector2(196, 23)
+scale = Vector2(2, 2)
+texture = ExtResource("6_vdcm2")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="600" type="Sprite2D" parent="Timer/Minute" unique_id=722678830]
+z_index = 10
+texture_filter = 1
+position = Vector2(168, 23)
+scale = Vector2(2, 2)
+texture = ExtResource("6_vdcm2")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
