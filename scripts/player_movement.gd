@@ -15,7 +15,7 @@ const JUMP_VELOCITY = 0
 func send_local_id(player: int, getting: bool) -> void:
 	if getting:
 		var idt = -1
-		if holding_something.Id != null:
+		if holding_something != null and holding_something.Id != null:
 			idt = holding_something.Id
 		send_local_id.rpc_id(player, idt, false)
 	else:

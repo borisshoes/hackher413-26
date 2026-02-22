@@ -21,4 +21,3 @@ func _physics_process(delta: float) -> void:
 	var seconds = new_real - (minutes * 60)
 	$Minute.realNum = minutes
 	$Second.realNum = seconds
-	print($Second.realNum)
