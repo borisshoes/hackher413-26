@@ -9,13 +9,9 @@ extends Workstation
 
 var accepted_ids = [50, 51, 52, 53]
 
-
 signal pressed_signal
 
-
 @export var interaction_radius:float = 1.5
-
-
 @export var press_depth := 0.1
 @export var press_time := 0.1
 
@@ -92,18 +88,27 @@ func _ready():
 	area.body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
-	
 	if not body.is_in_group("player"):
 		return
 	
 	if body.is_multiplayer_authority():
 		nearby_players[body] = true
-		#show_tooltip(body)
+		show_label()
+		body.set_active_workstation(self)
 
 func _on_body_exited(body):
-	if nearby_players.has(body):
-		nearby_players.erase(body)
-		#hide_tooltip(body)
+	if not body.is_in_group("player"):
+		return
+	
+	if not body.is_multiplayer_authority():
+		return
+	
+	nearby_players.erase(body)
+	hide_label()
+	body.clear_active_workstation(self)
+	
+	if active_users.has(body):
+		end_use(body)
 
 func try_interact(player):
 	if not player.is_multiplayer_authority():
@@ -125,20 +130,15 @@ func server_planter_function(id: int) -> void:
 		planted_id = id_held
 		progress = 0
 		player.take_hand()
+	
+	# Instantly release this workstation since planting is instant
+	var peer_id = player.get_multiplayer_authority()
+	if peer_id in active_users:
+		active_users.erase(peer_id)
+		sync_active_users.rpc(active_users)
+		end_use(peer_id)
 
 func interact(player):
 	print("PLANTING TIME")
 	server_planter_function.rpc_id(1, int(player.name))
 	# virtual function
-	
-	
-#func show_tooltip(player):
-	#var tooltip = preload("res://scenes/tooltip.tscn").instantiate()
-	#tooltip.target = $TooltipAnchor
-	#tooltip.get_node("Label").text = interaction_text
-	#player.add_child(tooltip)
-
-func hide_tooltip(player):
-	for child in player.get_children():
-		if child.name == "Tooltip":
-			child.queue_free()
