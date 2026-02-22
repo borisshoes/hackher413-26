@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c0qrtge3jhl45" path="res://assets/items/mint_seed.tscn" id="9_250kf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5vep"]
-size = Vector3(0.3366089, 0.1394043, 0.15049744)
+size = Vector3(0.32349777, 0.1394043, 0.15049744)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_elwhm"]
 viewport_path = NodePath("CollisionArea/ProgressBar/SubViewport")
@@ -37,7 +37,7 @@ script = ExtResource("1_f5vep")
 plant_array = Array[PackedScene]([ExtResource("2_ar6cg"), ExtResource("3_3m875"), ExtResource("4_0rgk4"), ExtResource("5_f8n8l"), ExtResource("6_js6od"), ExtResource("7_b0yii"), ExtResource("8_me323"), ExtResource("9_250kf")])
 sprite_texture = ExtResource("2_5kli6")
 atlas_region = Rect2i(64, 21, 32, 11)
-label_offset = Vector3(0, 0.5, 0)
+label_offset = Vector3(0, 0.7, 0)
 allow_multiple_interacts = true
 
 [node name="InteractionLabel" type="Label3D" parent="." unique_id=1680721440]
@@ -47,7 +47,7 @@ visible = false
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -0.49600077)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionArea" unique_id=157753774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016174316, 0.004760742, 0.20088151)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00044059753, 0.004760742, 0.20088157)
 shape = SubResource("BoxShape3D_f5vep")
 
 [node name="Visual" type="Sprite3D" parent="CollisionArea" unique_id=346430732]
@@ -101,10 +101,10 @@ shape = SubResource("BoxShape3D_5kli6")
 replication_config = SubResource("SceneReplicationConfig_elwhm")
 
 [node name="Location1" type="Node3D" parent="." unique_id=1089658308]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39482778, 0.5765665, 0.61032164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39482778, 0.79629135, 0.61032164)
 
 [node name="Location2" type="Node3D" parent="." unique_id=1267102923]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45899594, 0.5765665, 0.61032164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45899594, 0.79629135, 0.61032164)
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_area_3d_body_exited"]
