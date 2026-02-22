@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_helgu")
 recipe_name = "Potion of Alacrity"
-ingredients = Array[String](["D", "B", "A", "C", "C", "C", "D", "A", "D"])
+ingredients = Array[String](["D", "B", "A", "C", "C", "C", "D", "A"])
 metadata/_custom_type_script = "uid://bgrphikp4l6qw"
