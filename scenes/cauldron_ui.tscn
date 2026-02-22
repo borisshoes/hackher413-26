@@ -28,48 +28,48 @@ stretch_mode = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1991773251]
 custom_minimum_size = Vector2(30, 20)
 layout_mode = 0
-offset_left = 10.0
-offset_top = 9.0
+offset_left = 16.0
+offset_top = 5.0
 offset_right = 295.0
-offset_bottom = 31.0
-theme_override_constants/separation = 5
+offset_bottom = 36.0
+theme_override_constants/separation = 14
 
 [node name="Slot0" type="TextureRect" parent="HBoxContainer" unique_id=1449108763]
 texture_filter = 1
-custom_minimum_size = Vector2(30, 20)
+custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 
 [node name="Slot1" type="TextureRect" parent="HBoxContainer" unique_id=56308389]
 texture_filter = 1
-custom_minimum_size = Vector2(30, 20)
+custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 
 [node name="Slot2" type="TextureRect" parent="HBoxContainer" unique_id=1420979853]
 texture_filter = 1
-custom_minimum_size = Vector2(30, 20)
+custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 
 [node name="Slot3" type="TextureRect" parent="HBoxContainer" unique_id=1946779519]
 texture_filter = 1
-custom_minimum_size = Vector2(30, 20)
+custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 
 [node name="Slot4" type="TextureRect" parent="HBoxContainer" unique_id=1646472860]
 texture_filter = 1
-custom_minimum_size = Vector2(30, 20)
+custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 
 [node name="Slot5" type="TextureRect" parent="HBoxContainer" unique_id=1623207043]
 texture_filter = 1
-custom_minimum_size = Vector2(30, 20)
+custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 
 [node name="Slot6" type="TextureRect" parent="HBoxContainer" unique_id=1606686942]
 texture_filter = 1
-custom_minimum_size = Vector2(30, 20)
+custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 
 [node name="Slot7" type="TextureRect" parent="HBoxContainer" unique_id=554227545]
 texture_filter = 1
-custom_minimum_size = Vector2(30, 20)
+custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
