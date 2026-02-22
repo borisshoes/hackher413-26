@@ -1,6 +1,7 @@
 extends Workstation
 class_name cash_register
 
+@onready var popup:Sprite2D = $Sprite2D
 @export var customers: customerline
 var current_order = null
 
@@ -26,13 +27,15 @@ func interact(player):
 	#access player
 	
 	var playerNode:player_movement = get_tree().get_root().get_node("Node3D/"+str(player))
-	var held:Item = player.holding_something
+	var held:Item = playerNode.holding_something
 	if(held != null):
 		if(held.Id == current_order):
 			playerNode.take_hand()
 			#ADD MONEy
 			customers.destroy_front()
 			current_order = null
+			return;
+	popup.visible = true
 			
 		
 		
@@ -44,11 +47,9 @@ func start_use(peer_id:int):
 	print("[CashRegister] start_use() for peer: ", peer_id)
 	print("[CashRegister] Player is now actively using the cauldron.")
 	interact(peer_id)
-	if multiplayer.is_server():
-		end_use_request()
-	else:
-		end_use_request.rpc_id(1)
 # Called when the server registers the player ending use
 func end_use(peer_id:int):
 	print("[CashRegister] end_use() for peer: ", peer_id)
 	print("[CashRegister] Player has stopped using the cauldron.")
+	popup.visible = false
+	
