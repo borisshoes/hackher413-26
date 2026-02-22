@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bli432i5uj51v" path="res://addons/TileMapLayer3D/core/tile_creation_placement/tilemap_layer_settings.gd" id="3_v6avs"]
 [ext_resource type="Texture2D" uid="uid://dwxgdprjw61vw" path="res://assets/textures/indoorTileset.png" id="4_8qak7"]
 [ext_resource type="PackedScene" uid="uid://sc6l2fgalufy" path="res://assets/items/item.tscn" id="5_2klcf"]
+[ext_resource type="Script" uid="uid://cif43s272ben1" path="res://scenes/counter.gd" id="6_nakos"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y35xu"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -375,6 +376,7 @@ metadata/_custom_type_script = "uid://4kv8f8ejgwqn"
 
 [node name="Counter3" type="StaticBody3D" parent="." unique_id=1621959693]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.25, -0.5)
+script = ExtResource("6_nakos")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Counter3" unique_id=793916262]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
