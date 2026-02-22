@@ -1,6 +1,6 @@
 extends Node
 
-const ADDRESS = "localhost"
+const ADDRESS = "192.168.137.79"
 const PORT = 3621
 
 @export var local_player: Node = null
