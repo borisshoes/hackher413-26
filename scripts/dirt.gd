@@ -4,7 +4,7 @@ extends Workstation
 @export var planted := false
 @export var progress := 0
 @export var planted_id = -1
-@export var total := 1200
+@export var total := 60 * 7
 @export var plant_array: Array[PackedScene] = []
 
 var accepted_ids = [50, 51, 52, 53]

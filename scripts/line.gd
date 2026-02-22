@@ -6,7 +6,7 @@ class_name customerline
 
 
 var time = 60 * 16
-var spawntime = 60 * 25
+var spawntime = 60 * 60
 
 
 var slots = [false, false, false, false, false]
