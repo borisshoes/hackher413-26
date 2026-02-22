@@ -70,22 +70,24 @@ func _process(delta: float) -> void:
 		stage1.visible = false
 		stage2.visible = false
 		progress_bar_texture.visible = false
+
 func _ready():
+	# Set node paths before base class _ready runs
 	sprite = $CollisionArea/Visual
-	add_to_group("workstation")
-	
-	sprite.texture = sprite_texture
-	sprite.region_enabled = true
-	sprite.region_rect = atlas_region
+	label = $InteractionLabel
+	# Don't set area - scene already has signals connected to _on_area_3d_body_entered/exited
+	super._ready()
 
-	#_apply_sizes()
-	
-	label.text = interaction_text
-	label.position = label_offset
-	label.visible = false
+# Don't let base class resize our collision shapes - they're set in the scene
+func _apply_sizes():
+	pass
 
-	area.body_entered.connect(_on_body_entered)
-	area.body_exited.connect(_on_body_exited)
+# Scene has signals connected to these names - forward to inherited methods
+func _on_area_3d_body_entered(body):
+	_on_body_entered(body)
+
+func _on_area_3d_body_exited(body):
+	_on_body_exited(body)
 
 func _on_body_entered(body):
 	if not body.is_in_group("player"):
@@ -106,40 +108,26 @@ func _on_body_exited(body):
 	nearby_players.erase(body)
 	hide_label()
 	body.clear_active_workstation(self)
-	
-	if active_users.has(body):
-		end_use(body)
 
-func try_interact(player):
-	if not player.is_multiplayer_authority():
+# Override start_use - this is where the planting happens
+func start_use(peer_id: int):
+	print("[Dirt] start_use called, peer_id: %d, planted: %s" % [peer_id, planted])
+	if planted:
+		print("[Dirt] Already planted, returning")
 		return
-
-	interact(player)
-
-# Override request_use to skip active_users lockout - dirt is instant use
-@rpc("any_peer")
-func request_use():
-	if !multiplayer.is_server():
+	var player = _get_player_from_peer(peer_id)
+	if player == null:
+		print("[Dirt] Player not found for peer %d" % peer_id)
 		return
-	# Don't add to active_users, just emit signal and call start_use
-	var peer_id = multiplayer.get_remote_sender_id()
-	start_use(peer_id)
-	emit_signal("use_started", peer_id)
-	
-@rpc("any_peer","call_local")
-func server_planter_function(id: int) -> void:
-	if planted: return
-	if !multiplayer.is_server(): return
-	var player = get_tree().current_scene.get_node(str(id))
-	if player == null: return
 	var holding = player.holding_something
-	if holding == null: return
+	if holding == null:
+		print("[Dirt] Player not holding anything")
+		return
 	var id_held = int(holding.Id)
+	print("[Dirt] Player holding item with Id: %d, accepted: %s" % [id_held, accepted_ids])
 	if id_held in accepted_ids:
+		print("[Dirt] Planting!")
 		planted = true
 		planted_id = id_held
 		progress = 0
 		player.take_hand()
-
-func interact(player):
-	server_planter_function.rpc_id(1, int(player.name))
