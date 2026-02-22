@@ -2,9 +2,10 @@ extends Node3D
 class_name Item
 
 
-@export var ID := 1
-@export var XOffset := 16
-@export var YOffset := 32
+@export var Id: int
+@export var XOffset: int
+@export var YOffset: int
+@export var colorMod: Color
 @export var Sprite := "res://assets/sprites/items.png"
 
 
@@ -26,7 +27,7 @@ var local_player = null
 func _ready() -> void:
 	tex.texture = load(Sprite)
 	tex.region_rect = Rect2(Vector2(XOffset, YOffset), Vector2(16, 16))
-		
+	tex.modulate = colorMod
 	
 	pass # Replace with function body.
 
@@ -54,16 +55,21 @@ func _process(delta: float) -> void:
 	pass
 	
 #Function for picking up
-@rpc("any_peer", "call_local") func pickup(player: int) -> void:
+@rpc("any_peer", "call_local") 
+func pickup(player: int) -> void:
 	if !multiplayer.is_server(): return
 	if player_holding == null:
 		collision.disabled = true
 		player_holding = get_tree().current_scene.get_node(str(player))
-
+		player_holding.holding_something = self
 #Function for putting down
 @rpc("any_peer", "call_local") func place(player: int) -> void:
 	if !multiplayer.is_server(): return
+	
+	if player_holding != null:
+		player_holding.holding_something = null
 	player_holding = null
+	
 	collision.disabled = false
 	position -= Vector3(0,.5,-.25)
 

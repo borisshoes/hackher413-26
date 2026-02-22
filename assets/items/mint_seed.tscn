@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://sc6l2fgalufy"]
+[gd_scene format=3 uid="uid://c0qrtge3jhl45"]
 
-[ext_resource type="Script" uid="uid://fh1qokl0d03u" path="res://scripts/item.gd" id="1_244al"]
-[ext_resource type="Texture2D" uid="uid://dvsp06udukv8v" path="res://assets/sprites/items.png" id="2_s8enn"]
+[ext_resource type="Script" uid="uid://fh1qokl0d03u" path="res://scripts/item.gd" id="1_mphqt"]
+[ext_resource type="Texture2D" uid="uid://dvsp06udukv8v" path="res://assets/sprites/items.png" id="2_kfx3q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vpy52"]
 size = Vector3(0.43922424, 0.76445746, 0.21177745)
@@ -20,8 +20,10 @@ radius = 0.35253906
 
 [node name="item" type="Node3D" unique_id=2028317467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8761209, 0)
-script = ExtResource("1_244al")
-ID = 0
+script = ExtResource("1_mphqt")
+Id = 53
+YOffset = 32
+colorMod = Color(0.32282633, 0.67644995, 0, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1786573429]
 
@@ -32,7 +34,7 @@ shape = SubResource("BoxShape3D_vpy52")
 [node name="Sprite3D" type="Sprite3D" parent="StaticBody3D" unique_id=1809301182]
 transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, -0.5053996, 0)
 texture_filter = 0
-texture = ExtResource("2_s8enn")
+texture = ExtResource("2_kfx3q")
 region_enabled = true
 region_rect = Rect2(16, 32, 16, 16)
 

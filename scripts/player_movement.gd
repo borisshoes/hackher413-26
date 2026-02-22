@@ -4,6 +4,9 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 0
 
+#used by server
+
+#Used by client
 @export var holding_something: Node = null
 var active_workstation: Workstation = null
 
@@ -39,6 +42,14 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	
+	
+func take_hand() -> void:
+	holding_something.queue_free()
+	holding_something = null
+	
+	
 
 func set_active_workstation(ws):
 	active_workstation = ws
@@ -55,9 +66,17 @@ func close_current_workstation():
 		else:
 			active_workstation.end_use_request.rpc_id(1)
 
+
 func _input(event):
 	if event.is_action_pressed("interact") and active_workstation:
 		if multiplayer.is_server():
 			active_workstation.request_use()
 		else:
 			active_workstation.request_use.rpc_id(1)
+		try_interact_player()
+
+func try_interact_player():
+	if nearby_interactables.is_empty():
+		return
+
+	nearby_interactables[0].try_interact(self)

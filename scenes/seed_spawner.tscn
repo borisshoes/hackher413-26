@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://m3fknlq35hfl"]
+
+[ext_resource type="Script" uid="uid://f5j05r5obpbf" path="res://scripts/seed_spawner.gd" id="1_reuet"]
+[ext_resource type="PackedScene" uid="uid://cv2ped1ch1p63" path="res://assets/items/lavender_seed.tscn" id="2_04er7"]
+[ext_resource type="PackedScene" uid="uid://ccm1h2h14owh1" path="res://assets/items/lily_seed.tscn" id="3_j317l"]
+[ext_resource type="PackedScene" uid="uid://c5myadq23c5ug" path="res://assets/items/mandrake_seed.tscn" id="4_36r0k"]
+[ext_resource type="PackedScene" uid="uid://c0qrtge3jhl45" path="res://assets/items/mint_seed.tscn" id="5_1lbta"]
+
+[node name="SeedSpawner" type="Node3D" unique_id=614069734]
+script = ExtResource("1_reuet")
+seed1 = ExtResource("2_04er7")
+seed2 = ExtResource("3_j317l")
+seed3 = ExtResource("4_36r0k")
+seed4 = ExtResource("5_1lbta")
+
+[node name="1" type="Node3D" parent="." unique_id=1749917310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="2" type="Node3D" parent="." unique_id=1917993395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="3" type="Node3D" parent="." unique_id=1326614541]
+
+[node name="4" type="Node3D" parent="." unique_id=1770127806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)

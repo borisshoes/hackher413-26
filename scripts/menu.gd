@@ -17,6 +17,7 @@ func _on_client_pressed() -> void:
 	var map: Node = Map.instantiate()
 	var HandlerInstance: Node = Handler.instantiate()
 	
+	NetHandler.spawner = HandlerInstance
 	$"..".call_deferred("add_child", HandlerInstance)
 	$"..".call_deferred("add_child", map)
 	delete()
@@ -25,6 +26,8 @@ func _on_server_pressed() -> void:
 	NetHandler.start_server()
 	var map: Node = Map.instantiate()
 	var HandlerInstance: Node = Handler.instantiate()
+	
+	NetHandler.spawner = HandlerInstance
 	$"..".call_deferred("add_child", HandlerInstance)
 	$"..".call_deferred("add_child", map)
 	delete()
