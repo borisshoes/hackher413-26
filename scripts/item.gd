@@ -10,7 +10,7 @@ class_name Item
 
 
 #Used by server
-var player_holding = null
+@export var player_holding = null
 
 #Used by local
 var in_range = false

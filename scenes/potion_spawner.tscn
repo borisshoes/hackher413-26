@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cefvaufcf755d"]
+
+[ext_resource type="Script" uid="uid://bh5b7jh2x4tjf" path="res://scripts/table.gd" id="1_fupj6"]
+[ext_resource type="PackedScene" uid="uid://busa4fphyhury" path="res://assets/items/bottle.tscn" id="2_b7x82"]
+
+[node name="Node3D" type="Node3D" unique_id=1875378421]
+script = ExtResource("1_fupj6")
+bottle_slot = ExtResource("2_b7x82")
