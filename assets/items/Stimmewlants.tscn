@@ -1,10 +1,61 @@
-[gd_scene format=3 uid="uid://dkedb6gpdtp21"]
+[gd_scene format=3 uid="uid://c4cpnjl02a68y"]
 
 [ext_resource type="Script" uid="uid://fh1qokl0d03u" path="res://scripts/item.gd" id="1_5bg7b"]
 [ext_resource type="Texture2D" uid="uid://dvsp06udukv8v" path="res://assets/sprites/items.png" id="2_8e4fq"]
+[ext_resource type="Texture2D" uid="uid://dcb005k38q5p4" path="res://textures/items_map.png" id="4_pmt7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vpy52"]
 size = Vector3(0.43922424, 0.76445746, 0.21177745)
+
+[sub_resource type="Shader" id="Shader_7r44q"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D sprite_index_tex : filter_nearest, repeat_disable;
+uniform sampler2D new_palette : filter_nearest, repeat_disable;
+uniform int color_count;
+uniform bool debug_magenta = false;
+
+void fragment() {
+    // Sample the index texture (R channel = 0..1) and alpha
+    vec4 idx_tex = texture(sprite_index_tex, UV);
+    float idx_f = idx_tex.r;
+    float alpha = idx_tex.a;
+
+    // Fully transparent pixels stay transparent
+    if (alpha < 0.01) {
+        ALBEDO = vec3(0.0);
+        ALPHA = 0.0;
+    }
+
+    vec4 result;
+
+    if (debug_magenta) {
+        result.rgb = vec3(1.0, 0.0, 1.0);
+        result.a = 1.0;
+    } else {
+        // Convert normalized 0..1 to integer index 0..color_count-1
+        int idx = int(floor(idx_f * float(color_count) + 0.5));
+
+        // Fetch the color from the palette
+        float u = (float(idx) + 0.5) / float(color_count);
+        result = texture(new_palette, vec2(u, 0.5));
+    }
+
+    ALBEDO = result.rgb;
+    ALPHA = alpha; // preserve original transparency
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o5kf7"]
+load_path = "res://.godot/imported/10.PNG-a561ff04c3c8c91470447ed1e06a7047.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ytejq"]
+render_priority = 0
+shader = SubResource("Shader_7r44q")
+shader_parameter/sprite_index_tex = ExtResource("4_pmt7j")
+shader_parameter/new_palette = SubResource("CompressedTexture2D_o5kf7")
+shader_parameter/color_count = 6
+shader_parameter/debug_magenta = false
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_krft3"]
 properties/0/path = NodePath(".:position")
@@ -22,6 +73,8 @@ radius = 0.35253906
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8761209, 0)
 script = ExtResource("1_5bg7b")
 Id = 5
+XOffset = 48
+YOffset = 32
 colorMod = Color(1, 1, 1, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1786573429]
@@ -36,6 +89,14 @@ texture_filter = 0
 texture = ExtResource("2_8e4fq")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="liquid" type="Sprite3D" parent="StaticBody3D" unique_id=293576326]
+transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, -0.5053996, -0.005804062)
+material_override = SubResource("ShaderMaterial_ytejq")
+texture_filter = 0
+texture = ExtResource("4_pmt7j")
+region_enabled = true
+region_rect = Rect2(32, 32, 16, 16)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1178643710]
 replication_config = SubResource("SceneReplicationConfig_krft3")
