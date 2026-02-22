@@ -10,12 +10,21 @@ const JUMP_VELOCITY = 0
 @export var holding_something: Node = null
 var active_workstation: Workstation = null
 
+@export var camera_fixed_z: float = 2.35  # World Z position for camera
+var camera_local_offset: Vector3
+@onready var camera = $Camera3D
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 	
 	if not is_multiplayer_authority(): return
 	
 	$Camera3D.make_current()
+
+func _ready():
+	if is_multiplayer_authority():
+		# Store initial local offset of camera
+		camera_local_offset = camera.position
 
 func _physics_process(delta: float) -> void:
 	
@@ -42,6 +51,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	# Lock camera depth (Z position) - adjust local Z to keep global Z fixed
+	if is_multiplayer_authority() and camera:
+		camera.position.z = camera_fixed_z - global_position.z
 	
 	
 	
