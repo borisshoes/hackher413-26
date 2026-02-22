@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bav2qo84rlcoj"]
+
+[ext_resource type="Script" uid="uid://ns85i6s6xf31" path="res://scripts/cauldron_ui.gd" id="1_c64wo"]
+[ext_resource type="Texture2D" uid="uid://diyvhhmv3kt8k" path="res://assets/brewing_ui/potion_bar.png" id="2_l8scj"]
+[ext_resource type="Texture2D" uid="uid://can8x3jox832m" path="res://assets/brewing_ui/lavender_bar.png" id="2_tqtkx"]
+[ext_resource type="Texture2D" uid="uid://dp0a0yfjb2sk4" path="res://assets/brewing_ui/lily_bar.png" id="3_igfyr"]
+[ext_resource type="Texture2D" uid="uid://byash1medmcux" path="res://assets/brewing_ui/mandrake_bar.png" id="4_p6d63"]
+[ext_resource type="Texture2D" uid="uid://c0risa3sgyy7x" path="res://assets/brewing_ui/mint_bar.png" id="5_yp1hp"]
+
+[node name="CauldronUI" type="Control" unique_id=502190997]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c64wo")
+ingredient_textures = Array[Texture2D]([ExtResource("2_tqtkx"), ExtResource("3_igfyr"), ExtResource("4_p6d63"), ExtResource("5_yp1hp")])
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1579099958]
+layout_mode = 0
+offset_right = 295.0
+offset_bottom = 40.0
+texture = ExtResource("2_l8scj")
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1991773251]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 295.0
+offset_bottom = 40.0
+theme_override_constants/separation = 35
+
+[node name="Slot0" type="TextureRect" parent="HBoxContainer" unique_id=1449108763]
+layout_mode = 2
+
+[node name="Slot1" type="TextureRect" parent="HBoxContainer" unique_id=56308389]
+layout_mode = 2
+
+[node name="Slot2" type="TextureRect" parent="HBoxContainer" unique_id=1420979853]
+layout_mode = 2
+
+[node name="Slot3" type="TextureRect" parent="HBoxContainer" unique_id=1946779519]
+layout_mode = 2
+
+[node name="Slot4" type="TextureRect" parent="HBoxContainer" unique_id=1646472860]
+layout_mode = 2
+
+[node name="Slot5" type="TextureRect" parent="HBoxContainer" unique_id=1623207043]
+layout_mode = 2
+
+[node name="Slot6" type="TextureRect" parent="HBoxContainer" unique_id=1606686942]
+layout_mode = 2
+
+[node name="Slot7" type="TextureRect" parent="HBoxContainer" unique_id=554227545]
+layout_mode = 2

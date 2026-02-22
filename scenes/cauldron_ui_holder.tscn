@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://db6vqdrrv2jej"]
+
+[ext_resource type="PackedScene" uid="uid://bav2qo84rlcoj" path="res://scenes/cauldron_ui.tscn" id="1_l4svv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6860n"]
+viewport_path = NodePath("SubViewport")
+
+[node name="CauldronUiHolder" type="Sprite3D" unique_id=466287602]
+billboard = 1
+texture = SubResource("ViewportTexture_6860n")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=820075389]
+transparent_bg = true
+size = Vector2i(295, 40)
+
+[node name="CauldronUI" parent="SubViewport" unique_id=502190997 instance=ExtResource("1_l4svv")]
