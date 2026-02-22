@@ -69,15 +69,9 @@ func close_current_workstation():
 
 func _input(event):
 	if event.is_action_pressed("interact") and active_workstation:
-		
+		var my_peer_id = multiplayer.get_unique_id()
+		print("[Player] Interact pressed, peer_id: %d" % my_peer_id)
 		if multiplayer.is_server():
-			active_workstation.request_use()
+			active_workstation.request_use(my_peer_id)
 		else:
-			active_workstation.request_use.rpc_id(1)
-		try_interact_player()
-
-func try_interact_player():
-	if active_workstation == null:
-		return
-
-	active_workstation.try_interact(self)
+			active_workstation.request_use.rpc_id(1, my_peer_id)

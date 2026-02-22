@@ -11,12 +11,13 @@ signal use_ended(peer_id)
 @export var interaction_size:float = 1.0
 @export var collision_size:float = 0.5
 @export var allow_multiple_interacts:bool = false
+@export var instant_interact:bool = false
 
-@onready var label: Label3D = $InteractionLabel
-@onready var area = $InteractionArea
-@onready var sprite = $Visual
-@onready var interaction_shape: CollisionShape3D = $InteractionArea/CollisionShape3D
-@onready var collision_shape: CollisionShape3D = $CollisionArea/CollisionShape3D
+var label: Label3D  # Set in _ready or by subclass
+var area  # Set in _ready or by subclass
+var sprite  # Set in _ready or by subclass
+var interaction_shape: CollisionShape3D  # Set in _ready or by subclass
+var collision_shape: CollisionShape3D  # Set in _ready or by subclass
 
 var nearby_players := {}
 var active_users: Array[int] = []
@@ -24,23 +25,44 @@ var active_users: Array[int] = []
 func _ready():
 	add_to_group("workstation")
 	
-	sprite.texture = sprite_texture
-	sprite.region_enabled = true
-	sprite.region_rect = atlas_region
+	# Only set these if subclass hasn't already
+	if label == null:
+		label = get_node_or_null("InteractionLabel")
+	if area == null:
+		area = get_node_or_null("InteractionArea")
+	if sprite == null:
+		sprite = get_node_or_null("Visual")
+	if interaction_shape == null:
+		interaction_shape = get_node_or_null("InteractionArea/CollisionShape3D")
+	if collision_shape == null:
+		collision_shape = get_node_or_null("CollisionArea/CollisionShape3D")
+	
+	if sprite:
+		sprite.texture = sprite_texture
+		sprite.region_enabled = true
+		sprite.region_rect = atlas_region
 
 	_apply_sizes()
 	
-	label.text = interaction_text
-	label.position = label_offset
-	label.visible = false
+	if label:
+		label.text = interaction_text
+		label.position = label_offset
+		label.visible = false
 
-	area.body_entered.connect(_on_body_entered)
-	area.body_exited.connect(_on_body_exited)
+	if area:
+		area.body_entered.connect(_on_body_entered)
+		area.body_exited.connect(_on_body_exited)
 
 func _apply_sizes():
-	var i_shape = interaction_shape.shape as BoxShape3D
-	if i_shape:
-		i_shape.size = Vector3(interaction_size, interaction_size, interaction_size)
+	if interaction_shape:
+		var i_shape = interaction_shape.shape as BoxShape3D
+		if i_shape:
+			i_shape.size = Vector3(interaction_size, interaction_size, interaction_size)
+
+	if collision_shape:
+		var c_shape = collision_shape.shape as BoxShape3D
+		if c_shape:
+			c_shape.size = Vector3(collision_size, collision_size, collision_size)
 
 	var c_shape = collision_shape.shape as BoxShape3D
 	if c_shape:
@@ -57,6 +79,9 @@ func _on_body_entered(body):
 
 
 func _on_body_exited(body):
+	if !body.is_in_group("player"):
+		return
+	
 	if !body.is_multiplayer_authority():
 		return
 
@@ -68,32 +93,53 @@ func _on_body_exited(body):
 	end_use_request.rpc_id(1)
 		
 func show_label():
+	if not label:
+		return
 	label.visible = true
 	label.modulate.a = 0.0
 	var t = create_tween()
 	t.tween_property(label, "modulate:a", 1.0, 0.15)
 
 func hide_label():
+	if not label:
+		return
 	var t = create_tween()
 	t.tween_property(label, "modulate:a", 0.0, 0.15)
 	t.tween_callback(func(): label.visible = false)
 
 @rpc("any_peer")
-func request_use():
+func request_use(caller_peer_id: int = 0):
 	if !multiplayer.is_server():
 		return
 
+	# Get peer_id from RPC sender, or use passed value for local server calls
 	var peer_id = multiplayer.get_remote_sender_id()
+	if peer_id == 0:
+		peer_id = caller_peer_id
+	
+	print("[Workstation] request_use called, peer_id: %d, instant_interact: %s" % [peer_id, instant_interact])
+
+	# Instant interactions skip active_users tracking entirely
+	if instant_interact:
+		print("[Workstation] Calling start_use for peer %d" % peer_id)
+		start_use(peer_id)
+		emit_signal("use_started", peer_id)
+		end_use(peer_id)
+		emit_signal("use_ended", peer_id)
+		return
 
 	if !allow_multiple_interacts and active_users.size() > 0:
+		print("[Workstation] Rejected - already in use")
 		return
 
 	if peer_id in active_users:
+		print("[Workstation] Rejected - peer already active")
 		return
 
 	active_users.append(peer_id)
 
 	sync_active_users.rpc(active_users)
+	print("[Workstation] Calling start_use for peer %d" % peer_id)
 	start_use(peer_id)
 	emit_signal("use_started", peer_id)
 
@@ -119,11 +165,14 @@ func sync_active_users(new_users:Array):
 
 func is_in_use() -> bool:
 	return active_users.size() > 0
-	
-func start_use(peer_id:int):
-	print("Using Generic Workstation")
+
+# Helper to get player node from peer_id
+func _get_player_from_peer(peer_id: int) -> Node:
+	return get_tree().current_scene.get_node_or_null(str(peer_id))
+
+# Override in subclass to handle interaction
+func start_use(peer_id: int):
 	pass
 
-func end_use(peer_id:int):
-	print("Leaving Generic Workstation")
+func end_use(peer_id: int):
 	pass

@@ -12,9 +12,12 @@ func _ready():
 		var slot = $HBoxContainer.get_child(i)
 		slots.append(slot)
 		slot.texture = null # empty by default
+	print("[CauldronUI] _ready complete, slots: %d" % slots.size())
 
 # Called from workstation when brew state updates
 func update_progress(current_brew: Array):
+	print("[CauldronUI] update_progress called with: %s" % [current_brew])
+	print("[CauldronUI] slots count: %d, textures count: %d" % [slots.size(), ingredient_textures.size()])
 	# Clear all slots first
 	for slot in slots:
 		slot.texture = null
@@ -23,6 +26,7 @@ func update_progress(current_brew: Array):
 	for i in range(current_brew.size()):
 		var ingredient_name = current_brew[i]
 		var blob_texture = _get_blob_for_ingredient(ingredient_name)
+		print("[CauldronUI] Slot %d: ingredient=%s, texture=%s" % [i, ingredient_name, blob_texture])
 		if blob_texture and i < slots.size():
 			slots[i].texture = blob_texture
 
